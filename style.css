@@ -596,12 +596,18 @@ h2.section-title em { font-style: italic; color: var(--sage); }
 }
 .angebote-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
   align-items: stretch;
 }
-.angebote-grid .angebot-card--featured {
+.angebote-grid .angebot-card {
   grid-column: span 2;
+}
+.angebote-grid .angebot-card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+.angebote-grid .angebot-card:nth-child(5) {
+  grid-column: 4 / span 2;
 }
 .angebot-card {
   background: var(--cream);
