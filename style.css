@@ -6,19 +6,19 @@
 
 /* ── Variables ── */
 :root {
-  --deep:        #1C2B1C;
-  --sage:        #6B9B7A;
-  --sage-light:  #A8C5AD;
-  --sage-pale:   #E8F0E9;
-  --cream:       #F5F0E8;
-  --warm-white:  #FAFAF7;
-  --gold:        #C4975A;
-  --gold-light:  #E8C99A;
-  --text:        #2A3B2A;
-  --text-mid:    #5A6B5A;
-  --text-light:  #8A9B8A;
-  --border:      rgba(107,155,122,0.2);
-  --shadow:      rgba(28,43,28,0.08);
+  --deep:        #3d2838;
+  --sage:        #94778b;
+  --sage-light:  #82d4bb;
+  --sage-pale:   #f0eaee;
+  --cream:       #fdf6fb;
+  --warm-white:  #fdfbfc;
+  --gold:        #ffcf56;
+  --gold-light:  #ffe99a;
+  --text:        #2d1f2b;
+  --text-mid:    #6b5462;
+  --text-light:  #9e8a98;
+  --border:      rgba(148,119,139,0.2);
+  --shadow:      rgba(45,31,43,0.08);
   --nav-h:       80px;
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
@@ -352,7 +352,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--deep) 0%, #2a4a2a 50%, #1a3520 100%);
+  background: linear-gradient(135deg, var(--deep) 0%, #6b4a5e 50%, #3d2838 100%);
 }
 .hero-bg-image {
   position: absolute;
@@ -977,7 +977,7 @@ footer {
 /* ── Subpage Hero ── */
 .page-hero {
   padding: calc(var(--nav-h) + 80px) clamp(24px, 4vw, 60px) 80px;
-  background: linear-gradient(135deg, var(--deep) 0%, #2a4a2a 100%);
+  background: linear-gradient(135deg, var(--deep) 0%, #6b4a5e 100%);
   position: relative;
   overflow: hidden;
 }
