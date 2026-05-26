@@ -520,7 +520,11 @@
         </div>
       </div>
       <!-- Formspree: action="https://formspree.io/f/DEINE_ID" ergänzen -->
-      <form class="kontakt-form reveal-right" action="#" method="POST">
+      <form class="kontakt-form reveal-right" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="16fa3a95-55af-4c0b-80cf-8452a34ea507">
+        <input type="hidden" name="subject" value="Neue Kontaktanfrage – Lebensgefühl">
+        <input type="hidden" name="redirect" value="https://annarhrssn.github.io/Website-Lebensgef-hl/danke.html">
+        <input type="checkbox" name="botcheck" style="display:none">
         <div class="form-row">
           <div class="form-group">
             <label for="k-name">Name</label>
