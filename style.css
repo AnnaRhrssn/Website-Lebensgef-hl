@@ -676,16 +676,18 @@ h2.section-title em { font-style: italic; color: var(--sage); }
 
 /* ── Angebot Badge (Empfohlen) ── */
 .angebot-badge {
-  display: inline-block;
+  position: absolute;
+  top: 18px;
+  right: 18px;
   background: var(--gold);
   color: var(--deep);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 4px 12px;
+  padding: 4px 10px;
   border-radius: 20px;
-  margin-bottom: 1rem;
+  line-height: 1;
 }
 .angebot-card--featured {
   border: 2px solid var(--gold);
