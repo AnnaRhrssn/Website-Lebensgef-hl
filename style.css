@@ -767,6 +767,68 @@ h2.section-title em { font-style: italic; color: var(--sage); }
   text-underline-offset: 2px;
 }
 
+
+/* ── Trust Signals (Beratung-Seite) ── */
+.trust-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 2.5rem;
+}
+.trust-review-card {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.75rem;
+}
+.trust-stars {
+  color: var(--gold);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+.trust-review-text {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+.trust-review-name {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  letter-spacing: 0.05em;
+}
+.trust-about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: center;
+}
+.trust-about-image {
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+}
+.trust-about-text h2 { margin-bottom: 1.25rem; }
+.trust-about-text p { color: var(--text-mid); margin-bottom: 1rem; }
+.trust-about-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.trust-stat { display: flex; flex-direction: column; gap: 4px; }
+.trust-stat strong { font-size: 0.88rem; color: var(--deep); font-weight: 600; }
+.trust-stat span { font-size: 0.78rem; color: var(--text-light); }
+@media (max-width: 768px) {
+  .trust-reviews-grid { grid-template-columns: 1fr; }
+  .trust-about-inner { grid-template-columns: 1fr; }
+  .trust-about-image { aspect-ratio: 4/3; }
+}
+
 /* ── About ── */
 #about { background: var(--deep); overflow: hidden; }
 .about-inner {
