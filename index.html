@@ -698,32 +698,5 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="main.js"></script>
 
-<!-- Brevo Newsletter -->
-<script>
-  window.REQUIRED_CODE_ERROR_MESSAGE = 'Bitte wähle eine Ländervorwahl aus.';
-  window.LOCALE = 'de';
-  window.EMAIL_INVALID_MESSAGE = 'Bitte gib eine gültige E-Mail-Adresse ein.';
-  window.REQUIRED_ERROR_MESSAGE = 'Dieses Feld darf nicht leer sein.';
-  window.GENERIC_INVALID_MESSAGE = 'Die eingegebenen Informationen sind nicht gültig.';
-  var AUTOHIDE = Boolean(0);
-</script>
-<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-<script>
-  // Weiterleitung zur Danke-Seite nach erfolgreicher Newsletter-Anmeldung
-  document.addEventListener('DOMContentLoaded', function () {
-    var successEl = document.getElementById('success-message');
-    if (successEl) {
-      var observer = new MutationObserver(function () {
-        if (successEl.style.display !== 'none' && successEl.style.display !== '') {
-          observer.disconnect();
-          setTimeout(function () {
-            window.location.href = 'danke-newsletter.html';
-          }, 800);
-        }
-      });
-      observer.observe(successEl, { attributes: true, attributeFilter: ['style'] });
-    }
-  });
-</script>
 </body>
 </html>
