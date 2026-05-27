@@ -1518,6 +1518,9 @@ footer {
   .kontakt-inner { grid-template-columns: 1fr; }
   .kontakt-form { padding: 32px 28px; }
   .angebote-grid { grid-template-columns: repeat(2, 1fr); }
+  .angebote-grid .angebot-card,
+  .angebote-grid .angebot-card:nth-child(4),
+  .angebote-grid .angebot-card:nth-child(5) { grid-column: auto; }
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
 }
 @media (max-width: 768px) {
