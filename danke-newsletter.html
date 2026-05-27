@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter angemeldet – Lebensgefühl</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .danke-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: clamp(80px, 12vw, 160px) clamp(24px, 5vw, 80px);
+      background: var(--warm-white);
+    }
+    .danke-inner { max-width: 580px; margin: 0 auto; }
+    .danke-icon {
+      width: 72px; height: 72px;
+      background: var(--sage-pale);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 2rem;
+    }
+    .danke-icon svg { width: 36px; height: 36px; color: var(--sage); }
+    .danke-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .danke-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--deep);
+      margin-bottom: 1.5rem;
+    }
+    .danke-text {
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .danke-box {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 2.5rem;
+      text-align: left;
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .danke-box strong { color: var(--deep); }
+    .danke-back { font-size: 0.8rem; color: var(--text-mid); }
+    .danke-back a { color: var(--sage); text-decoration: underline; text-underline-offset: 3px; }
+  </style>
+</head>
+<body>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-text">Lebensgefühl</span>
+  </a>
+</header>
+
+<section class="danke-section">
+  <div class="danke-inner">
+
+    <div class="danke-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+      </svg>
+    </div>
+
+    <span class="danke-label">Newsletter</span>
+
+    <h1 class="danke-headline">
+      Schön, dass du<br><em>dabei bist.</em>
+    </h1>
+
+    <p class="danke-text">
+      Du erhältst meine Ernährungs- &amp; Lebensstilpost ab sofort direkt in dein Postfach – alle 2–4 Wochen, kein Spam, jederzeit abbestellbar.
+    </p>
+
+    <div class="danke-box">
+      <strong>Was dich erwartet:</strong><br>
+      Praxisnahe Tipps zu Ernährung und Wohlbefinden, neue Blogartikel, saisonale Empfehlungen und ab und zu ein persönlicher Einblick aus meiner Beratungsarbeit.
+    </div>
+
+    <a href="index.html" class="btn btn-primary" style="display:inline-flex;margin-bottom:2rem;">
+      <span>Zurück zur Startseite</span>
+      <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <br>
+    <p class="danke-back"><a href="blog.html">← Zum Blog</a></p>
+
+  </div>
+</section>
+
+<script src="main.js"></script>
+</body>
+</html>
