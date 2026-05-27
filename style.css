@@ -1776,7 +1776,7 @@ footer {
 }
 .google-reviews-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
 .google-review-card {
@@ -1846,12 +1846,11 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .google-reviews-grid { grid-template-columns: 1fr; gap: 16px; }
   .google-reviews-header { flex-direction: column; align-items: flex-start; }
   .google-score-block { align-self: flex-start; }
 }
-@media (min-width: 901px) and (max-width: 1100px) {
-  .google-reviews-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 580px) {
+  .google-reviews-grid { grid-template-columns: 1fr; gap: 16px; }
 }
 
 /* ═══════════════════════════════════════════
