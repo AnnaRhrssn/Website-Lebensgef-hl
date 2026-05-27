@@ -597,18 +597,23 @@
         </p>
       </div>
       <div class="newsletter-form-wrap reveal-right">
-        <!-- ⬇ ACTION-URL des Newsletter-Anbieters hier eintragen (z.B. Brevo, Mailchimp) -->
-        <form class="newsletter-form" action="#" method="POST">
-          <label for="newsletter-email" class="newsletter-label">E-Mail-Adresse</label>
-          <div class="newsletter-row">
-            <input type="email" id="newsletter-email" name="email" required placeholder="deine@email.de" class="newsletter-input" />
-            <button type="submit" class="btn btn-primary newsletter-btn">
-              <span>Anmelden</span>
-              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-          <p class="newsletter-hinweis">Mit der Anmeldung stimmst du der Verarbeitung deiner E-Mail-Adresse für den Versand des Newsletters zu. Abmeldung jederzeit möglich. <a href="datenschutz.html" style="color:var(--sage-light);text-decoration:underline;">Datenschutz</a></p>
-        </form>
+        <div id="sib-form-container">
+          <div id="error-message" style="display:none;font-family:inherit;font-size:0.9rem;color:#661d1d;background:#ffeded;border:1px solid #ff4949;border-radius:8px;padding:12px 16px;margin-bottom:12px;">Deine Anmeldung konnte nicht gespeichert werden. Bitte versuche es erneut.</div>
+          <div id="success-message" style="display:none;"></div>
+          <form class="newsletter-form" id="sib-form" action="https://a4458692.sibforms.com/serve/MUIFAA-CXgd9ORO6ihMiW96ihWqYEykb2Cb3YcSF3luFXaLInfxQxItVNsKHHqmeW21KOTBAoOP5LkBtb62jUaNGvAvNDJ7iLTHnUcNUauho8bkYPBF99jlSU3rFNojbbwMPseJBLStcES71AF1scQCp96o381QYONMrZjI-FfWbmB2E3YMTUDFWD4s6R873xsREQ1hCZXj4Cx9FVg==" method="POST" data-type="subscription">
+            <label for="newsletter-email" class="newsletter-label">E-Mail-Adresse</label>
+            <div class="newsletter-row">
+              <input type="email" id="newsletter-email" name="EMAIL" autocomplete="off" required placeholder="deine@email.de" class="newsletter-input" />
+              <button type="submit" class="btn btn-primary newsletter-btn">
+                <span>Anmelden</span>
+                <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <input type="text" name="email_address_check" value="" style="display:none;">
+            <input type="hidden" name="locale" value="de">
+            <p class="newsletter-hinweis">Mit der Anmeldung stimmst du der Verarbeitung deiner E-Mail-Adresse für den Versand des Newsletters zu. Abmeldung jederzeit möglich. <a href="datenschutz.html" style="color:var(--sage-light);text-decoration:underline;">Datenschutz</a></p>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -692,5 +697,33 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="main.js"></script>
+
+<!-- Brevo Newsletter -->
+<script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Bitte wähle eine Ländervorwahl aus.';
+  window.LOCALE = 'de';
+  window.EMAIL_INVALID_MESSAGE = 'Bitte gib eine gültige E-Mail-Adresse ein.';
+  window.REQUIRED_ERROR_MESSAGE = 'Dieses Feld darf nicht leer sein.';
+  window.GENERIC_INVALID_MESSAGE = 'Die eingegebenen Informationen sind nicht gültig.';
+  var AUTOHIDE = Boolean(0);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+<script>
+  // Weiterleitung zur Danke-Seite nach erfolgreicher Newsletter-Anmeldung
+  document.addEventListener('DOMContentLoaded', function () {
+    var successEl = document.getElementById('success-message');
+    if (successEl) {
+      var observer = new MutationObserver(function () {
+        if (successEl.style.display !== 'none' && successEl.style.display !== '') {
+          observer.disconnect();
+          setTimeout(function () {
+            window.location.href = 'danke-newsletter.html';
+          }, 800);
+        }
+      });
+      observer.observe(successEl, { attributes: true, attributeFilter: ['style'] });
+    }
+  });
+</script>
 </body>
 </html>
