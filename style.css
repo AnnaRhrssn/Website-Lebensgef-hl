@@ -1392,7 +1392,7 @@ footer {
   margin-top: 2px;
 }
 .forwho-box.no ul li::before,
-.forwho-box.forwho-no ul li::before { content: '–'; color: var(--text-light); font-weight: 400; }
+.forwho-box.forwho-no ul li::before { content: '–'; color: var(--sage-light); font-weight: 400; }
 
 /* ── Datenschutz / Impressum ── */
 .legal-content {
