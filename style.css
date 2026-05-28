@@ -1678,19 +1678,18 @@ footer {
 .page-hero-privat {
   display: flex;
   align-items: center;
-  margin-top: 1rem;
-  font-size: 0.78rem;
-  color: rgba(245,240,232,0.42);
-  letter-spacing: 0.03em;
+  margin-top: 0.85rem;
+  font-size: 0.68rem;
+  color: rgba(245,240,232,0.38);
+  letter-spacing: 0.02em;
   max-width: 460px;
 }
 .page-hero-privat strong {
-  color: rgba(245,240,232,0.58);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 0.78rem;
-  margin-right: 0.35em;
+  color: rgba(245,240,232,0.48);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-size: 0.68rem;
+  margin-right: 0.3em;
 }
 
 /* Responsive subpage content */
