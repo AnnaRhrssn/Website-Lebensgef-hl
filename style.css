@@ -1675,16 +1675,20 @@ footer {
   max-width: 560px;
   margin-bottom: 36px;
 }
-.page-hero-privat {
+.page-hero-privat,
+.page-hero .page-hero-privat {
   display: flex;
   align-items: center;
   margin-top: 0.85rem;
+  margin-bottom: 0;
   font-size: 0.68rem;
   color: rgba(245,240,232,0.38);
   letter-spacing: 0.02em;
   max-width: 460px;
+  line-height: 1.5;
 }
-.page-hero-privat strong {
+.page-hero-privat strong,
+.page-hero .page-hero-privat strong {
   color: rgba(245,240,232,0.48);
   font-weight: 400;
   letter-spacing: 0.04em;
