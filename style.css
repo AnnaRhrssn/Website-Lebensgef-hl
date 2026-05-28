@@ -1675,6 +1675,28 @@ footer {
   max-width: 560px;
   margin-bottom: 36px;
 }
+.page-hero-privat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1.25rem;
+  padding: 0.5rem 1rem;
+  background: rgba(245,240,232,0.07);
+  border: 1px solid rgba(245,240,232,0.18);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: rgba(245,240,232,0.6);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+.page-hero-privat strong {
+  color: rgba(245,240,232,0.85);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+.page-hero-privat svg { flex-shrink: 0; opacity: 0.5; }
 
 /* Responsive subpage content */
 @media (max-width: 768px) {
