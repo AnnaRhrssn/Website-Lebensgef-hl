@@ -1679,10 +1679,6 @@ footer {
   margin-top: 8px;
 }
 
-/* For-who variants (subpages) */
-.forwho-box.forwho-yes { background: var(--sage-pale); border-color: var(--sage-light); }
-.forwho-box.forwho-no { background: var(--warm-white); }
-.forwho-box.forwho-no ul li::before { content: '○'; color: var(--text-light); }
 
 /* CTA Banner (subpages) */
 .cta-banner-inner {
