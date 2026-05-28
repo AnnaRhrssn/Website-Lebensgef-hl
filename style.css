@@ -1315,42 +1315,84 @@ footer {
 /* For-who grid */
 .forwho-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: 3fr 2fr;
+  gap: 24px;
   margin-top: 48px;
+  align-items: start;
 }
 .forwho-box {
-  padding: 36px 32px;
-  border-radius: 4px;
+  padding: 40px 36px;
+  border-radius: 16px;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+.forwho-box.yes,
+.forwho-box.forwho-yes {
+  background: var(--deep);
+}
+.forwho-box.forwho-yes::after {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(130,212,187,0.10) 0%, transparent 68%);
+  pointer-events: none;
+}
+.forwho-box.no,
+.forwho-box.forwho-no {
+  background: var(--warm-white);
   border: 1px solid var(--border);
 }
-.forwho-box.yes { background: var(--sage-pale); border-color: var(--sage-light); }
-.forwho-box.no { background: var(--warm-white); }
+.forwho-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.forwho-yes .forwho-badge {
+  background: rgba(130,212,187,0.15);
+  color: var(--sage-light);
+}
+.forwho-no .forwho-badge {
+  background: rgba(148,119,139,0.12);
+  color: var(--text-mid);
+}
 .forwho-box h3 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 400;
-  margin-bottom: 20px;
-  color: var(--deep);
+  margin-bottom: 22px;
+  color: var(--cream);
 }
-.forwho-box ul { display: flex; flex-direction: column; gap: 10px; }
+.forwho-box.no h3,
+.forwho-box.forwho-no h3 { color: var(--deep); }
+.forwho-box ul { display: flex; flex-direction: column; gap: 14px; }
 .forwho-box ul li {
-  font-size: 0.88rem;
-  color: var(--text-mid);
+  font-size: 0.9rem;
+  color: rgba(245,240,232,0.72);
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  line-height: 1.5;
+  gap: 12px;
+  line-height: 1.55;
 }
+.forwho-box.no ul li,
+.forwho-box.forwho-no ul li { color: var(--text-mid); }
 .forwho-box ul li::before {
   content: '✓';
-  color: var(--sage);
+  color: var(--sage-light);
   font-size: 0.75rem;
   font-weight: 600;
   flex-shrink: 0;
-  margin-top: 1px;
+  margin-top: 2px;
 }
-.forwho-box.no ul li::before { content: '○'; color: var(--text-light); }
+.forwho-box.no ul li::before,
+.forwho-box.forwho-no ul li::before { content: '–'; color: var(--text-light); font-weight: 400; }
 
 /* ── Datenschutz / Impressum ── */
 .legal-content {
