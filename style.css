@@ -1329,7 +1329,7 @@ footer {
 }
 .forwho-box.yes,
 .forwho-box.forwho-yes {
-  background: var(--deep);
+  background: #5c3d52;
 }
 .forwho-box.forwho-yes::after {
   content: '';
@@ -1338,13 +1338,13 @@ footer {
   right: -80px;
   width: 260px;
   height: 260px;
-  background: radial-gradient(circle, rgba(130,212,187,0.10) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(130,212,187,0.12) 0%, transparent 68%);
   pointer-events: none;
 }
 .forwho-box.no,
 .forwho-box.forwho-no {
-  background: var(--warm-white);
-  border: 1px solid var(--border);
+  background: var(--sage-pale);
+  border: 1px solid rgba(148,119,139,0.25);
 }
 .forwho-badge {
   width: 40px;
