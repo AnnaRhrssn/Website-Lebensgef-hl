@@ -2075,6 +2075,32 @@ footer {
 /* ── Artikel ── */
 .article-hero { padding-bottom: 60px; }
 
+/* Tag-Badge in Artikel-Hero: position:absolute aus blog-card-tag überschreiben */
+.article-hero .blog-card-tag {
+  position: static;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* Em-Farbe in Artikel-Überschriften: kein Farbwechsel */
+.article-hero h1 em {
+  color: var(--cream);
+}
+
+/* Artikel Cover-Bild */
+.article-cover-image {
+  background: var(--warm-white);
+  padding: 48px clamp(24px, 4vw, 60px) 0;
+}
+.article-cover-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  height: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(45,31,43,0.12);
+}
+
 .article-breadcrumb {
   display: flex;
   align-items: center;
