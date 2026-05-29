@@ -237,7 +237,7 @@
         '</div>',
         '<div class="lg-cb-actions">',
           '<button id="lg-cb-settings" class="lg-cb-btn lg-cb-btn--outline" type="button">Einstellungen</button>',
-          '<button id="lg-cb-necessary" class="lg-cb-btn lg-cb-btn--outline" type="button">Nur notwendige</button>',
+          '<button id="lg-cb-necessary" class="lg-cb-btn lg-cb-btn--outline" type="button">Ablehnen</button>',
           '<button id="lg-cb-all" class="lg-cb-btn lg-cb-btn--primary" type="button">Alle akzeptieren</button>',
         '</div>',
       '</div>'
@@ -288,14 +288,29 @@
       '.lg-cb-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;flex-wrap:wrap;}',
 
       /* ── Buttons ── */
-      '.lg-cb-btn{cursor:pointer;border-radius:4px;padding:9px 16px;',
-        'font-family:"Inter",system-ui,sans-serif;font-size:0.78rem;font-weight:500;',
-        'letter-spacing:0.02em;transition:background 0.2s,color 0.2s,border-color 0.2s;white-space:nowrap;border:none;}',
-      '.lg-cb-btn--outline{background:transparent;border:1px solid rgba(255,207,86,0.4);color:#fdf6fb;}',
-      '.lg-cb-btn--outline:hover{border-color:rgba(255,207,86,0.85);color:#ffe99a;}',
-      '.lg-cb-btn--primary{background:#ffcf56;color:#3d2838;}',
-      '.lg-cb-btn--primary:hover{background:#ffe99a;}',
-      '.lg-cb-btn--outline-dark{background:transparent;border:1px solid rgba(61,40,56,0.3);color:#3d2838;}',
+      '.lg-cb-btn{cursor:pointer;border-radius:6px;',
+        'font-family:"Inter",system-ui,sans-serif;font-weight:500;',
+        'letter-spacing:0.02em;transition:background 0.2s,color 0.2s,border-color 0.2s,box-shadow 0.2s;white-space:nowrap;border:none;}',
+
+      /* Primär – "Alle akzeptieren": groß, gold, auffällig */
+      '.lg-cb-btn--primary{',
+        'background:#ffcf56;color:#3d2838;',
+        'padding:11px 24px;font-size:0.85rem;',
+        'box-shadow:0 2px 12px rgba(255,207,86,0.35);',
+      '}',
+      '.lg-cb-btn--primary:hover{background:#ffe99a;box-shadow:0 4px 18px rgba(255,207,86,0.5);}',
+
+      /* Sekundär – "Nur notwendige": kleiner, schwach sichtbar */
+      '.lg-cb-btn--outline{',
+        'background:transparent;',
+        'border:1px solid rgba(255,255,255,0.15);',
+        'color:rgba(253,246,251,0.5);',
+        'padding:9px 14px;font-size:0.75rem;',
+      '}',
+      '.lg-cb-btn--outline:hover{border-color:rgba(255,255,255,0.35);color:rgba(253,246,251,0.8);}',
+
+      /* Für Modal – "Auswahl speichern" */
+      '.lg-cb-btn--outline-dark{background:transparent;border:1px solid rgba(61,40,56,0.3);color:#3d2838;padding:9px 16px;font-size:0.8rem;}',
       '.lg-cb-btn--outline-dark:hover{border-color:rgba(61,40,56,0.6);background:rgba(61,40,56,0.05);}',
 
       /* ── Overlay ── */
