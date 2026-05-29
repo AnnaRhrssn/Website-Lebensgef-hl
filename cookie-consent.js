@@ -348,15 +348,66 @@
     document.head.appendChild(style);
   }
 
+  /* ─── "Cookie-Einstellungen"-Link in Footer einfügen ─── */
+  function injectFooterLink() {
+    // Sucht .footer-legal (Hauptseiten) oder footer p (Rechtsseiten)
+    var target = document.querySelector('.footer-legal');
+    if (!target) {
+      // Fallback: letzter <p> im <footer>
+      var footer = document.querySelector('footer');
+      if (footer) target = footer.querySelector('p');
+    }
+    if (!target) return;
+    if (target.querySelector('.lg-footer-link')) return; // schon vorhanden
+
+    var sep  = document.createTextNode(' · ');
+    var link = document.createElement('a');
+    link.className   = 'lg-footer-link';
+    link.href        = '#';
+    link.textContent = 'Cookie-Einstellungen';
+    link.setAttribute('aria-label', 'Cookie-Einstellungen öffnen');
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      injectStyles();
+      openModal();
+    });
+
+    // Stil: passt sich dem Footer an
+    var style = document.createElement('style');
+    style.textContent = '.lg-footer-link{color:inherit;opacity:0.7;text-decoration:none;}.lg-footer-link:hover{opacity:1;}';
+    if (!document.getElementById('lg-footer-link-style')) {
+      style.id = 'lg-footer-link-style';
+      document.head.appendChild(style);
+    }
+
+    target.appendChild(sep);
+    target.appendChild(link);
+  }
+
+  /* ─── Global API – ermöglicht z.B. eigenen Button im Footer ─── */
+  window.lgCookieSettings = function () {
+    injectStyles();
+    openModal();
+  };
+
   /* ─── Initialisierung ─── */
   function init() {
     var saved = getSaved();
 
+    // Footer-Link immer einfügen (auch bei bereits gespeicherter Einwilligung)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', injectFooterLink);
+    } else {
+      injectFooterLink();
+    }
+
     if (saved && saved.version === CONSENT_VER) {
+      // Gespeicherte Einwilligung anwenden – kein Banner
       applyConsent(saved);
       return;
     }
 
+    // Noch keine Einwilligung → Banner zeigen
     injectStyles();
 
     function showBanner() {
@@ -368,6 +419,13 @@
       document.getElementById('lg-cb-settings').addEventListener('click', function () {
         injectStyles();
         openModal();
+        /*
+         * HINWEIS: Der Overlay (z-index 99999) liegt über dem Banner (z-index 99998).
+         * Solange das Modal offen ist, sind die Banner-Buttons "Nur notwendige" und
+         * "Alle akzeptieren" NICHT klickbar – der Overlay blockiert sie.
+         * Eine unbeabsichtigte Überschreibung der Modal-Einstellungen durch die
+         * Banner-Buttons ist daher technisch ausgeschlossen.
+         */
       });
 
       setTimeout(function () {
