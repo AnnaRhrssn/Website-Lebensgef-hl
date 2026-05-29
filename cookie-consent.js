@@ -300,14 +300,14 @@
       '}',
       '.lg-cb-btn--primary:hover{background:#ffe99a;box-shadow:0 4px 18px rgba(255,207,86,0.5);}',
 
-      /* Sekundär – "Nur notwendige": kleiner, schwach sichtbar */
+      /* Sekundär – "Ablehnen" / "Einstellungen": kein Rahmen, gedimmter Text */
       '.lg-cb-btn--outline{',
         'background:transparent;',
-        'border:1px solid rgba(255,255,255,0.15);',
-        'color:rgba(253,246,251,0.5);',
-        'padding:9px 14px;font-size:0.75rem;',
+        'border:none;outline:none;',
+        'color:rgba(253,246,251,0.45);',
+        'padding:9px 12px;font-size:0.75rem;',
       '}',
-      '.lg-cb-btn--outline:hover{border-color:rgba(255,255,255,0.35);color:rgba(253,246,251,0.8);}',
+      '.lg-cb-btn--outline:hover{color:rgba(253,246,251,0.8);}',
 
       /* Für Modal – "Auswahl speichern" */
       '.lg-cb-btn--outline-dark{background:transparent;border:1px solid rgba(61,40,56,0.3);color:#3d2838;padding:9px 16px;font-size:0.8rem;}',
