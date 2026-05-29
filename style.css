@@ -1605,8 +1605,8 @@ footer {
 .content-section-image {
   border-radius: 4px;
   overflow: hidden;
-  aspect-ratio: 2/3;
-  max-height: 460px;
+  aspect-ratio: 4/5;
+  max-height: 520px;
 }
 .content-section-image img {
   width: 100%;
