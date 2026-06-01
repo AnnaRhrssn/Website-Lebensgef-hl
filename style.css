@@ -374,7 +374,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 0 clamp(24px, 8vw, 120px);
+  padding: 60px clamp(24px, 8vw, 120px) 0;
   max-width: 900px;
 }
 .hero-eyebrow {
