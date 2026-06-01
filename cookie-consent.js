@@ -255,7 +255,7 @@
 
       /* ── Floating Button ── */
       '#lg-cookie-fab{',
-        'position:fixed;bottom:24px;left:16px;z-index:99990;',
+        'position:fixed;bottom:80px;left:16px;z-index:99990;',
         'display:inline-flex;align-items:center;gap:6px;',
         'background:rgba(61,40,56,0.9);color:#fdf6fb;',
         'border:1px solid rgba(255,207,86,0.3);border-radius:20px;',
@@ -300,14 +300,14 @@
       '}',
       '.lg-cb-btn--primary:hover{background:#ffe99a;box-shadow:0 4px 18px rgba(255,207,86,0.5);}',
 
-      /* Sekundär – "Ablehnen" / "Einstellungen": kein Rahmen, gedimmter Text */
+      /* Sekundär – "Ablehnen" / "Einstellungen": gleichwertig sichtbar (DSK-Anforderung) */
       '.lg-cb-btn--outline{',
         'background:transparent;',
-        'border:none;outline:none;',
-        'color:rgba(253,246,251,0.45);',
-        'padding:9px 12px;font-size:0.75rem;',
+        'border:1px solid rgba(253,246,251,0.55);',
+        'color:rgba(253,246,251,0.9);',
+        'padding:10px 16px;font-size:0.82rem;border-radius:6px;',
       '}',
-      '.lg-cb-btn--outline:hover{color:rgba(253,246,251,0.8);}',
+      '.lg-cb-btn--outline:hover{border-color:rgba(253,246,251,0.9);color:#fdf6fb;background:rgba(255,255,255,0.08);}',
 
       /* Für Modal – "Auswahl speichern" */
       '.lg-cb-btn--outline-dark{background:transparent;border:1px solid rgba(61,40,56,0.3);color:#3d2838;padding:9px 16px;font-size:0.8rem;}',
