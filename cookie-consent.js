@@ -306,8 +306,10 @@
         'border:1px solid rgba(253,246,251,0.55);',
         'color:rgba(253,246,251,0.9);',
         'padding:10px 16px;font-size:0.82rem;border-radius:6px;',
+        'outline:none;',
       '}',
       '.lg-cb-btn--outline:hover{border-color:rgba(253,246,251,0.9);color:#fdf6fb;background:rgba(255,255,255,0.08);}',
+      '.lg-cb-btn--outline:focus-visible{box-shadow:0 0 0 2px rgba(255,207,86,0.6);}',
 
       /* Für Modal – "Auswahl speichern" */
       '.lg-cb-btn--outline-dark{background:transparent;border:1px solid rgba(61,40,56,0.3);color:#3d2838;padding:9px 16px;font-size:0.8rem;}',
@@ -390,8 +392,13 @@
       var banner = createBanner();
       document.body.appendChild(banner);
 
-      document.getElementById('lg-cb-all').addEventListener('click', acceptAll);
-      document.getElementById('lg-cb-necessary').addEventListener('click', acceptNecessary);
+      // FAB ausblenden solange Banner sichtbar
+      var fab = document.getElementById('lg-cookie-fab');
+      if (fab) fab.style.display = 'none';
+      function restoreFab() { var f = document.getElementById('lg-cookie-fab'); if (f) f.style.display = ''; }
+
+      document.getElementById('lg-cb-all').addEventListener('click', function () { restoreFab(); acceptAll(); });
+      document.getElementById('lg-cb-necessary').addEventListener('click', function () { restoreFab(); acceptNecessary(); });
       document.getElementById('lg-cb-settings').addEventListener('click', function () {
         openModal();
         /*
