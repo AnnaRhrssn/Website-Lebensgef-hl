@@ -1609,14 +1609,13 @@ footer {
   .hero-sub { max-width: 100%; }            /* Subtitle nicht breiter als Viewport */
   .section-label { flex-wrap: wrap; }       /* Section-Label umbrechbar */
 
-  /* ── CTA-Buttons: kein Overflow rechts (alle Bereiche) ── */
-  .page-hero .btn,
-  .hero-actions .btn,
-  #hero .btn,
-  #cta-banner .btn {
+  /* ── Alle primären CTA-Buttons auf Mobile: mittig, kein Overflow ── */
+  .btn-primary {
+    display: flex;
     white-space: normal;
     text-align: center;
     justify-content: center;
+    align-items: center;
     width: 100%;
     max-width: 100%;
     padding: 14px 20px;
