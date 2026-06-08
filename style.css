@@ -773,6 +773,33 @@ h2.section-title em { font-style: italic; color: var(--sage); }
   text-underline-offset: 2px;
 }
 
+/* ── Datenschutz-Checkbox ── */
+.form-consent { margin-top: 4px; margin-bottom: 4px; }
+.consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+.consent-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  margin-top: 2px;
+  accent-color: var(--sage);
+  cursor: pointer;
+}
+.consent-label span {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+.consent-label a {
+  color: var(--text-mid);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 
 /* ── Trust Signals (Beratung-Seite) ── */
 .trust-reviews-grid {
