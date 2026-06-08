@@ -1447,25 +1447,27 @@ footer {
   z-index: 99;
   display: flex;
   align-items: center;
-  justify-content: flex-start;   /* oben beginnen, nicht zentriert */
+  justify-content: flex-start;
   flex-direction: column;
   gap: 0;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s;
-  overflow-y: auto;              /* scrollbar wenn nötig */
+  overflow-y: scroll;            /* 'scroll' statt 'auto' – zuverlässiger auf iOS */
+  -webkit-overflow-scrolling: touch; /* iOS Momentum-Scroll */
+  overscroll-behavior-y: contain;    /* verhindert Body-Scroll hinter dem Menü */
   overflow-x: hidden;
-  padding: 90px 24px 48px;       /* Platz für Close-Button oben */
+  padding: 90px 24px 60px;
 }
 .mobile-menu.open { opacity: 1; pointer-events: all; }
 .mobile-menu a {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.5rem, 7vw, 2rem);   /* kleiner + responsiv */
+  font-size: clamp(1.3rem, 6vw, 1.75rem); /* etwas kleiner für kleine Screens */
   font-weight: 300;
   color: var(--cream);
   letter-spacing: 0.05em;
   transition: color 0.3s;
-  padding: 10px 0;               /* statt gap, einzeln steuerbar */
+  padding: 9px 0;
   width: 100%;
   text-align: center;
 }
@@ -1599,17 +1601,39 @@ footer {
   #nav { background: rgba(250,250,247,0.95); backdrop-filter: blur(12px); }
   .nav-burger span { background: var(--text) !important; }
   .hero-headline { font-size: clamp(2.2rem, 10vw, 3rem); }
+
+  /* ── Hero + Page-Hero auf Mobile ── */
+  .page-hero h1 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+  .page-hero-sub { font-size: 0.9rem; line-height: 1.7; }
+  .hero-eyebrow { flex-wrap: wrap; }        /* Eyebrow-Text umbrechbar */
+  .hero-sub { max-width: 100%; }            /* Subtitle nicht breiter als Viewport */
+  .section-label { flex-wrap: wrap; }       /* Section-Label umbrechbar */
+
+  /* ── CTA-Buttons: kein Overflow rechts (index hero + alle Unterseiten) ── */
+  .page-hero .btn,
+  .hero-actions .btn,
+  #hero .btn {
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 20px;
+    letter-spacing: 0.1em;
+    box-sizing: border-box;
+  }
+
+  /* ── Sections nie breiter als Viewport ── */
+  #hero, .hero, .page-hero, section {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
 }
 @media (max-width: 480px) {
   .about-stats { grid-template-columns: 1fr; }
   .about-stat { display: flex; align-items: baseline; gap: 12px; }
-  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
   .process-grid { grid-template-columns: 1fr; }
-  /* Sektionen nie breiter als der Viewport */
-  section, .content-section, .page-hero, .hero {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
 }
 
 /* ── Subpage Content Layout ── */
@@ -1754,7 +1778,12 @@ footer {
 /* Responsive subpage content */
 @media (max-width: 768px) {
   .content-section-inner { grid-template-columns: 1fr; }
-  .content-section-image { max-height: 300px; aspect-ratio: 4/3; }
+  /* Hochformat beibehalten → Kopf wird nicht abgeschnitten */
+  .content-section-image {
+    aspect-ratio: 3/4;
+    max-height: 420px;
+  }
+  .content-section-image img { object-position: top center; }
 }
 
 /* ── FAQ Section ── */

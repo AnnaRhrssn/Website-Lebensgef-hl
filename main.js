@@ -96,9 +96,19 @@ function initNav() {
   const menu   = document.querySelector('.mobile-menu');
   const close  = document.querySelector('.mobile-close');
   if (burger && menu) {
-    burger.addEventListener('click', () => menu.classList.add('open'));
-    close && close.addEventListener('click', () => menu.classList.remove('open'));
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+    const openMenu = () => {
+      menu.classList.add('open');
+      document.body.style.overflow = 'hidden'; // Body-Scroll sperren
+      if (window.lenis) window.lenis.stop();    // Lenis pausieren → Menü scrollt frei
+    };
+    const closeMenu = () => {
+      menu.classList.remove('open');
+      document.body.style.overflow = '';        // Body-Scroll freigeben
+      if (window.lenis) window.lenis.start();   // Lenis wieder aktivieren
+    };
+    burger.addEventListener('click', openMenu);
+    close && close.addEventListener('click', closeMenu);
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   }
 }
 
