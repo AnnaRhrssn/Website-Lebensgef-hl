@@ -106,7 +106,7 @@ function initNav() {
       document.body.style.overflow = '';        // Body-Scroll freigeben
       if (window.lenis) window.lenis.start();   // Lenis wieder aktivieren
     };
-    burger.addEventListener('click', openMenu);
+    burger.addEventListener('click', () => menu.classList.contains('open') ? closeMenu() : openMenu());
     close && close.addEventListener('click', closeMenu);
     menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   }
