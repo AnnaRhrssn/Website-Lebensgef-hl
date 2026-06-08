@@ -1609,10 +1609,11 @@ footer {
   .hero-sub { max-width: 100%; }            /* Subtitle nicht breiter als Viewport */
   .section-label { flex-wrap: wrap; }       /* Section-Label umbrechbar */
 
-  /* ── CTA-Buttons: kein Overflow rechts (index hero + alle Unterseiten) ── */
+  /* ── CTA-Buttons: kein Overflow rechts (alle Bereiche) ── */
   .page-hero .btn,
   .hero-actions .btn,
-  #hero .btn {
+  #hero .btn,
+  #cta-banner .btn {
     white-space: normal;
     text-align: center;
     justify-content: center;
@@ -1622,6 +1623,9 @@ footer {
     letter-spacing: 0.1em;
     box-sizing: border-box;
   }
+
+  /* ── Testimonials: immer untereinander ab 768px ── */
+  .testimonials-grid { grid-template-columns: 1fr; }
 
   /* ── Sections nie breiter als Viewport ── */
   #hero, .hero, .page-hero, section {
