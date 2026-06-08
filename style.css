@@ -825,7 +825,7 @@ h2.section-title em { font-style: italic; color: var(--sage); }
 .trust-stat strong { font-size: 0.88rem; color: var(--deep); font-weight: 600; }
 .trust-stat span { font-size: 0.78rem; color: var(--text-light); }
 @media (max-width: 768px) {
-  .trust-reviews-grid { grid-template-columns: 1fr; }
+  .trust-reviews-grid { grid-template-columns: 1fr !important; }
   .trust-about-inner { grid-template-columns: 1fr; }
   .trust-about-image { aspect-ratio: 4/3; }
 }
