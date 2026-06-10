@@ -40,8 +40,37 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); } catch (e) {}
   }
 
+  /* ─── Elfsight Platzhalter anzeigen / entfernen ─── */
+  function showElfsightPlaceholders() {
+    document.querySelectorAll('[class*="elfsight-app-"]').forEach(function (widget) {
+      if (widget.previousElementSibling && widget.previousElementSibling.classList.contains('elfsight-placeholder')) return;
+      var ph = document.createElement('div');
+      ph.className = 'elfsight-placeholder';
+      ph.innerHTML = [
+        '<div class="elfsight-ph-inner">',
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" width="26" height="26">',
+            '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>',
+          '</svg>',
+          '<p class="elfsight-ph-title">Google Bewertungen</p>',
+          '<p class="elfsight-ph-text">Für die Anzeige der Kundenbewertungen sind Marketing-Cookies erforderlich.</p>',
+          '<button class="elfsight-ph-btn" type="button">Cookie-Einstellungen öffnen</button>',
+        '</div>'
+      ].join('');
+      ph.querySelector('.elfsight-ph-btn').addEventListener('click', function () {
+        injectStyles();
+        openModal();
+      });
+      widget.parentNode.insertBefore(ph, widget);
+    });
+  }
+
+  function removeElfsightPlaceholders() {
+    document.querySelectorAll('.elfsight-placeholder').forEach(function (el) { el.remove(); });
+  }
+
   /* ─── Elfsight dynamisch laden (nur nach Marketing-Einwilligung) ─── */
   function loadElfsight() {
+    removeElfsightPlaceholders();
     if (document.getElementById('elfsight-platform-js')) return; // bereits geladen
     if (!document.querySelector('[class*="elfsight-app-"]')) return; // kein Widget auf dieser Seite
     var s    = document.createElement('script');
@@ -366,7 +395,35 @@
         '.lg-modal-footer .lg-cb-btn{width:100%;text-align:center;}',
         /* FAB etwas nach oben, damit nicht von der Browserleiste verdeckt */
         '#lg-cookie-fab{bottom:72px;}',
-      '}'
+      '}',
+
+      /* ── Elfsight Platzhalter ── */
+      '.elfsight-placeholder{',
+        'background:rgba(130,212,187,0.08);',
+        'border:1px solid rgba(130,212,187,0.35);',
+        'border-radius:12px;',
+        'padding:2.5rem 2rem;',
+        'text-align:center;',
+        'margin-top:2rem;',
+      '}',
+      '.elfsight-ph-inner{display:flex;flex-direction:column;align-items:center;max-width:380px;margin:0 auto;}',
+      '.elfsight-ph-inner svg{color:#82d4bb;margin-bottom:0.9rem;opacity:0.8;}',
+      '.elfsight-ph-title{',
+        'font-family:"Cormorant Garamond",Georgia,serif;',
+        'font-size:1.25rem;font-weight:400;',
+        'color:#3d2838;margin:0 0 0.5rem;',
+      '}',
+      '.elfsight-ph-text{',
+        'font-size:0.82rem;color:#6b5462;line-height:1.6;margin:0 0 1.25rem;',
+      '}',
+      '.elfsight-ph-btn{',
+        'cursor:pointer;background:#ffcf56;color:#3d2838;',
+        'border:none;border-radius:6px;',
+        'padding:10px 22px;font-size:0.82rem;font-weight:500;',
+        'font-family:"Inter",system-ui,sans-serif;letter-spacing:0.02em;',
+        'transition:background 0.2s;',
+      '}',
+      '.elfsight-ph-btn:hover{background:#ffe99a;}'
     ].join('');
 
     document.head.appendChild(style);
@@ -388,10 +445,12 @@
       var saved = getSaved();
       if (saved && saved.version === CONSENT_VER) {
         applyConsent(saved);
+        if (saved.marketing !== true) showElfsightPlaceholders();
         return; // Kein Banner – Einwilligung bereits gespeichert
       }
 
-      // Kein gespeicherter Consent → Banner zeigen
+      // Kein gespeicherter Consent → Platzhalter und Banner zeigen
+      showElfsightPlaceholders();
       var banner = createBanner();
       document.body.appendChild(banner);
 
