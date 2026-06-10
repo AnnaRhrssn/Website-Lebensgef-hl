@@ -120,6 +120,40 @@
     }
     .danke-kontakt-way:hover { background: var(--sage-pale); }
     .danke-kontakt-way svg { color: var(--sage); flex-shrink: 0; }
+    .danke-bis-dahin {
+      margin-bottom: 2.5rem;
+    }
+    .danke-bis-dahin-title {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .danke-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .danke-link-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.1rem;
+      background: var(--cream);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: background 0.2s;
+      text-align: left;
+    }
+    .danke-link-item:hover { background: var(--sage-pale); }
+    .danke-link-item svg { color: var(--sage); flex-shrink: 0; }
+    .danke-link-item span { flex: 1; }
+    .danke-link-item small { font-size: 0.76rem; color: var(--text-mid); display: block; }
     .danke-back { font-size: 0.8rem; color: var(--text-mid); }
     .danke-back a { color: var(--sage); text-decoration: underline; text-underline-offset: 3px; }
   </style>
@@ -156,7 +190,7 @@
     </h1>
 
     <p class="danke-text">
-      Dein Termin ist bestätigt – du erhältst gleich eine Bestätigungsmail mit allen Details.
+      Dein Termin ist bestätigt – du erhältst gleich eine Bestätigungsmail mit allen Details zum Video- oder Telefongespräch.
     </p>
 
     <div class="danke-steps">
@@ -166,7 +200,7 @@
         <div class="danke-step-num">1</div>
         <div class="danke-step-text">
           <strong>Bestätigungsmail prüfen</strong><br>
-          Du bekommst eine E-Mail mit deinem Termin und dem Link zum Videogespräch.
+          Du bekommst eine E-Mail mit deinem Termin und dem Link zum Gespräch – per Video oder Telefon, je nachdem was du gewählt hast.
         </div>
       </div>
 
@@ -201,6 +235,36 @@
         <a href="mailto:daniela.mueller@lebens-gefuehl.com" class="danke-kontakt-way">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           daniela.mueller@lebens-gefuehl.com
+        </a>
+      </div>
+    </div>
+
+    <div class="danke-bis-dahin">
+      <span class="danke-bis-dahin-title">Bis dahin – schau gerne vorbei</span>
+      <div class="danke-links">
+        <a href="https://www.instagram.com/daniela_mueller_lebensgefuehl/" target="_blank" rel="noopener" class="danke-link-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <span>
+            Instagram folgen
+            <small>Tipps zu Ernährung, Energie & Wohlbefinden im Alltag</small>
+          </span>
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="blog.html" class="danke-link-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span>
+            Blog lesen
+            <small>Fundierte Artikel zu Wechseljahren, Darm & Vitalstoffversorgung</small>
+          </span>
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="index.html#newsletter" class="danke-link-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>
+            Newsletter abonnieren
+            <small>Monatliche Impulse direkt in dein Postfach</small>
+          </span>
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
     </div>
