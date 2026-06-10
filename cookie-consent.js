@@ -2,13 +2,13 @@
  * LEBENSGEFÜHL – Cookie Consent & Google Consent Mode v2
  * DSGVO-konform | Granulare Kategorien | Persistenter Settings-Button
  *
- * GTM-ID hier eintragen – ersetze GTM-XXXXXXX durch deine Container-ID:
+ * Container-ID: GTM-M94NZDKB
  */
 
 (function () {
   'use strict';
 
-  var GTM_ID      = 'GTM-XXXXXXX'; // ← HIER deine GTM-ID eintragen
+  var GTM_ID      = 'GTM-M94NZDKB';
   var STORAGE_KEY = 'lg_cookie_consent';
   var CONSENT_VER = '2';
 
