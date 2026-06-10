@@ -43,6 +43,7 @@
   /* ─── GTM dynamisch laden ─── */
   function loadGTM() {
     if (document.getElementById('gtm-script')) return;
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
     var s   = document.createElement('script');
     s.id    = 'gtm-script';
     s.async = true;
