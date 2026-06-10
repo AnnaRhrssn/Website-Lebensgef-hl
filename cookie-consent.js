@@ -40,6 +40,17 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); } catch (e) {}
   }
 
+  /* ─── Elfsight dynamisch laden (nur nach Marketing-Einwilligung) ─── */
+  function loadElfsight() {
+    if (document.getElementById('elfsight-platform-js')) return; // bereits geladen
+    if (!document.querySelector('[class*="elfsight-app-"]')) return; // kein Widget auf dieser Seite
+    var s    = document.createElement('script');
+    s.id     = 'elfsight-platform-js';
+    s.src    = 'https://elfsightcdn.com/platform.js';
+    s.async  = true;
+    document.head.appendChild(s);
+  }
+
   /* ─── Consent-Signale setzen ─── */
   function applyConsent(prefs) {
     var mkt = prefs.marketing === true;
@@ -52,6 +63,7 @@
       'personalization_storage': 'denied',
       'security_storage':        'granted'
     });
+    if (mkt) loadElfsight();
   }
 
   /* ─── Banner + Modal schließen ─── */
@@ -141,8 +153,9 @@
             '<div class="lg-category-info">',
               '<span class="lg-category-name">Marketing-Cookies</span>',
               '<span class="lg-category-desc">',
-                'Für Google Ads – Personalisierung und Erfolgsmessung von Werbeanzeigen. ',
-                'Anbieter: <strong>Google Ireland Limited</strong>. Daten ggf. in die USA übertragen.',
+                '<strong>Google Ads</strong> – Personalisierung und Erfolgsmessung von Werbeanzeigen (Google Ireland Limited). ',
+                '<strong>Elfsight Google Reviews</strong> – Eingebettetes Bewertungs-Widget (Elfsight UAB, Litauen; CDN ggf. USA). ',
+                'Daten ggf. in die USA übertragen.',
               '</span>',
             '</div>',
             '<div class="lg-toggle-wrap">',
@@ -220,7 +233,8 @@
         '<div class="lg-cb-text">',
           '<p class="lg-cb-title">Cookies &amp; Datenschutz</p>',
           '<p class="lg-cb-desc">',
-            'Wir nutzen Cookies – darunter <strong>Marketing-Cookies für Google Ads</strong>. ',
+            'Wir nutzen Cookies – darunter <strong>Marketing-Cookies für Google Ads</strong> und das ',
+            '<strong>Elfsight Google-Bewertungs-Widget</strong>. ',
             'Mehr in unserer <a href="datenschutz.html" class="lg-cb-link">Datenschutzerklärung</a>.',
           '</p>',
         '</div>',
