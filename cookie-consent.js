@@ -2,13 +2,13 @@
  * LEBENSGEFÜHL – Cookie Consent & Google Consent Mode v2
  * DSGVO-konform | Granulare Kategorien | Persistenter Settings-Button
  *
- * Container-ID: GTM-M94NZDKB
+ * GTM wird via Standard-Snippet im <head> jeder Seite geladen (GTM-M94NZDKB).
+ * Consent Mode v2: alle Tags blockiert bis Marketing-Einwilligung.
  */
 
 (function () {
   'use strict';
 
-  var GTM_ID      = 'GTM-M94NZDKB';
   var STORAGE_KEY = 'lg_cookie_consent';
   var CONSENT_VER = '2';
 
@@ -40,17 +40,6 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); } catch (e) {}
   }
 
-  /* ─── GTM dynamisch laden ─── */
-  function loadGTM() {
-    if (document.getElementById('gtm-script')) return;
-    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-    var s   = document.createElement('script');
-    s.id    = 'gtm-script';
-    s.async = true;
-    s.src   = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
-    document.head.appendChild(s);
-  }
-
   /* ─── Consent-Signale setzen ─── */
   function applyConsent(prefs) {
     var mkt = prefs.marketing === true;
@@ -63,7 +52,6 @@
       'personalization_storage': 'denied',
       'security_storage':        'granted'
     });
-    if (mkt) loadGTM();
   }
 
   /* ─── Banner + Modal schließen ─── */
