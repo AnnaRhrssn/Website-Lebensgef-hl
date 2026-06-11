@@ -600,6 +600,20 @@ h2.section-title em { font-style: italic; color: var(--sage); }
   flex-wrap: wrap;
   gap: 24px;
 }
+.angebote-hinweis {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 1.25rem;
+  font-size: 0.78rem;
+  color: var(--text-light);
+  background: rgba(130, 212, 187, 0.1);
+  border: 1px solid rgba(130, 212, 187, 0.3);
+  border-radius: 20px;
+  padding: 5px 12px 5px 10px;
+  line-height: 1.4;
+}
+.angebote-hinweis svg { flex-shrink: 0; color: var(--sage); }
 .angebote-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
