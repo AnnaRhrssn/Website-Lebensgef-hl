@@ -930,6 +930,30 @@ h2.section-title em { font-style: italic; color: var(--sage); }
   color: rgba(253,251,252,0.4);
   line-height: 1.5;
 }
+.newsletter-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+.newsletter-consent-check {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: var(--sage);
+  cursor: pointer;
+}
+.newsletter-consent-label {
+  font-size: 0.72rem;
+  color: rgba(253,251,252,0.5);
+  line-height: 1.5;
+  cursor: pointer;
+}
+.newsletter-consent-label a {
+  color: var(--sage-light);
+  text-decoration: underline;
+}
 @media (max-width: 768px) {
   .newsletter-inner { grid-template-columns: 1fr; }
   .newsletter-row { flex-direction: column; }

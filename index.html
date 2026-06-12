@@ -560,7 +560,10 @@
             </div>
             <input type="text" name="email_address_check" value="" style="display:none;">
             <input type="hidden" name="locale" value="de">
-            <p class="newsletter-hinweis">Mit der Anmeldung stimmst du der Verarbeitung deiner E-Mail-Adresse für den Versand des Newsletters zu. Abmeldung jederzeit möglich. <a href="datenschutz.html" style="color:var(--sage-light);text-decoration:underline;">Datenschutz</a></p>
+            <div class="newsletter-consent">
+              <input type="checkbox" id="newsletter-consent" required class="newsletter-consent-check">
+              <label for="newsletter-consent" class="newsletter-consent-label">Ich stimme zu, dass meine E-Mail-Adresse für den Versand des Newsletters gespeichert und genutzt wird. Die <a href="datenschutz.html">Datenschutzerklärung</a> habe ich gelesen. Abmeldung jederzeit möglich.</label>
+            </div>
           </form>
         </div>
       </div>
