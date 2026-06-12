@@ -771,6 +771,7 @@ h2.section-title em { font-style: italic; color: var(--sage); }
 .angebote-unsicher-link svg { width: 14px; height: 14px; }
 @media (max-width: 700px) {
   .angebote-unsicher { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+  .angebote-unsicher-link { white-space: normal; width: 100%; justify-content: space-between; }
 }
 
 /* ── Formular Datenschutz ── */
