@@ -161,7 +161,7 @@ body:has(#preloader) .nav-links a { color: var(--text-mid); }
 #nav.nav-on-light .nav-links a:hover { color: var(--text); }
 .nav-cta {
   background: var(--gold);
-  color: var(--warm-white) !important;
+  color: var(--deep) !important;
   padding: 10px 20px;
   border-radius: 2px;
   font-size: 0.72rem !important;
@@ -355,11 +355,10 @@ body:has(#preloader) .nav-burger span { background: var(--text); }
 /* ── Hero ── */
 #hero {
   position: relative;
-  height: 100svh;
-  min-height: 640px;
+  min-height: 100svh;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 #hero-canvas {
   position: absolute;
@@ -389,7 +388,7 @@ body:has(#preloader) .nav-burger span { background: var(--text); }
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 60px clamp(24px, 8vw, 120px) 0;
+  padding: 140px clamp(24px, 8vw, 120px) 64px;
   max-width: 900px;
 }
 .hero-eyebrow {
@@ -423,9 +422,9 @@ body:has(#preloader) .nav-burger span { background: var(--text); }
   font-size: clamp(0.95rem, 1.8vw, 1.15rem);
   color: #fff;
   font-weight: 300;
-  max-width: 520px;
-  line-height: 1.75;
-  margin-bottom: 44px;
+  max-width: 660px;
+  line-height: 1.65;
+  margin-bottom: 40px;
   opacity: 0;
   transform: translateY(20px);
 }
@@ -485,11 +484,12 @@ body:has(#preloader) .nav-burger span { background: var(--text); }
 }
 .btn-primary {
   background: var(--gold);
-  color: var(--warm-white);
+  color: var(--deep);
 }
 .btn-primary:hover {
-  background: #a8823d;
-  box-shadow: 0 4px 20px rgba(196,151,90,0.35);
+  background: var(--deep);
+  color: var(--cream);
+  box-shadow: 0 4px 20px rgba(61,40,56,0.35);
 }
 .btn-primary span, .btn-primary svg { white-space: nowrap; }
 .btn-outline {
@@ -1695,7 +1695,7 @@ footer {
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-burger { display: flex; }
-  .hero-content { padding: 0 24px; }
+  .hero-content { padding: calc(var(--nav-h) + 32px) 24px 48px; }
   .problem-inner { grid-template-columns: 1fr; }
   .problem-image { aspect-ratio: 4/3; max-height: 400px; }
   .problem-image-badge { left: 16px; bottom: 16px; }
