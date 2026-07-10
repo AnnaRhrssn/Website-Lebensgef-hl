@@ -10,7 +10,7 @@
   'use strict';
 
   var STORAGE_KEY = 'lg_cookie_consent';
-  var CONSENT_VER = '2';
+  var CONSENT_VER = '3';
 
   /* ─── dataLayer & Consent Mode v2 Defaults ─── */
   window.dataLayer = window.dataLayer || [];
@@ -52,7 +52,7 @@
             '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>',
           '</svg>',
           '<p class="elfsight-ph-title">Google Bewertungen</p>',
-          '<p class="elfsight-ph-text">Für die Anzeige der Kundenbewertungen sind Marketing-Cookies erforderlich.</p>',
+          '<p class="elfsight-ph-text">Damit du die Bewertungen sehen kannst, brauchen wir kurz dein Einverständnis.</p>',
           '<button class="elfsight-ph-btn" type="button">Cookie-Einstellungen öffnen</button>',
         '</div>'
       ].join('');
@@ -82,17 +82,18 @@
 
   /* ─── Consent-Signale setzen ─── */
   function applyConsent(prefs) {
-    var mkt = prefs.marketing === true;
+    var ads     = prefs.ads === true;
+    var reviews = prefs.reviews === true;
     gtag('consent', 'update', {
-      'ad_storage':              mkt ? 'granted' : 'denied',
-      'ad_user_data':            mkt ? 'granted' : 'denied',
-      'ad_personalization':      mkt ? 'granted' : 'denied',
-      'analytics_storage':       mkt ? 'granted' : 'denied',
+      'ad_storage':              ads ? 'granted' : 'denied',
+      'ad_user_data':            ads ? 'granted' : 'denied',
+      'ad_personalization':      ads ? 'granted' : 'denied',
+      'analytics_storage':       ads ? 'granted' : 'denied',
       'functionality_storage':   'granted',
       'personalization_storage': 'denied',
       'security_storage':        'granted'
     });
-    if (mkt) loadElfsight();
+    if (reviews) loadElfsight();
   }
 
   /* ─── Banner + Modal schließen ─── */
@@ -109,18 +110,24 @@
 
   /* ─── Entscheidungen ─── */
   function acceptAll() {
-    save({ marketing: true });
-    applyConsent({ marketing: true });
+    var prefs = { ads: true, reviews: true };
+    save(prefs);
+    applyConsent(prefs);
     removeAll();
   }
   function acceptNecessary() {
-    save({ marketing: false });
-    applyConsent({ marketing: false });
+    var prefs = { ads: false, reviews: false };
+    save(prefs);
+    applyConsent(prefs);
     removeAll();
   }
   function saveCustom() {
-    var toggle = document.getElementById('lg-toggle-marketing');
-    var prefs  = { marketing: toggle ? toggle.checked : false };
+    var adsToggle     = document.getElementById('lg-toggle-ads');
+    var reviewsToggle = document.getElementById('lg-toggle-reviews');
+    var prefs = {
+      ads:     adsToggle ? adsToggle.checked : false,
+      reviews: reviewsToggle ? reviewsToggle.checked : false
+    };
     save(prefs);
     applyConsent(prefs);
     removeAll();
@@ -130,8 +137,9 @@
   function openModal() {
     if (document.getElementById('lg-cookie-modal')) return;
 
-    var saved     = getSaved();
-    var mktActive = saved ? saved.marketing : false;
+    var saved         = getSaved();
+    var adsActive     = saved ? saved.ads     : false;
+    var reviewsActive = saved ? saved.reviews : false;
 
     var overlay = document.createElement('div');
     overlay.id  = 'lg-cookie-overlay';
@@ -153,9 +161,9 @@
       '</div>',
       '<div class="lg-modal-body">',
         '<p class="lg-modal-intro">',
-          'Hier kannst du auswählen, welche Cookies du erlaubst. ',
-          'Notwendige Cookies sind für den Betrieb der Website erforderlich. ',
-          'Weitere Informationen in unserer ',
+          'Hier entscheidest du, welche Cookies du erlauben möchtest. ',
+          'Notwendige Cookies sorgen dafür, dass die Website funktioniert. ',
+          'Mehr dazu in unserer ',
           '<a href="datenschutz.html" class="lg-cb-link">Datenschutzerklärung</a>.',
         '</p>',
         /* Notwendige */
@@ -164,7 +172,7 @@
             '<div class="lg-category-info">',
               '<span class="lg-category-name">Notwendige Cookies</span>',
               '<span class="lg-category-desc">',
-                'Technisch erforderlich (z.&nbsp;B. Speichern dieser Einstellung). Keine Übertragung an Dritte.',
+                'Sorgen dafür, dass die Website funktioniert, und speichern zum Beispiel deine Cookie-Einstellung. Keine Weitergabe an Dritte.',
               '</span>',
             '</div>',
             '<div class="lg-toggle-wrap">',
@@ -176,20 +184,43 @@
             '</div>',
           '</div>',
         '</div>',
-        /* Marketing */
+        /* Google Ads */
         '<div class="lg-category">',
           '<div class="lg-category-header">',
             '<div class="lg-category-info">',
-              '<span class="lg-category-name">Marketing-Cookies</span>',
+              '<span class="lg-category-name">Werbeanzeigen</span>',
               '<span class="lg-category-desc">',
-                '<strong>Google Ads</strong> – Personalisierung und Erfolgsmessung von Werbeanzeigen (Google Ireland Limited). ',
-                '<strong>Elfsight Google Reviews</strong> – Eingebettetes Bewertungs-Widget (Elfsight UAB, Litauen; CDN ggf. USA). ',
-                'Daten ggf. in die USA übertragen.',
+                'Damit wir sehen, welche Anzeigen bei dir gut ankommen, und dir passendere Werbung zeigen können.',
               '</span>',
+              '<details class="lg-more">',
+                '<summary>Mehr erfahren</summary>',
+                '<p>Anbieter: Google Ireland Limited. Dient der Erfolgsmessung und Personalisierung von Werbeanzeigen. Dabei können Daten in die USA übertragen werden.</p>',
+              '</details>',
             '</div>',
             '<div class="lg-toggle-wrap">',
-              '<input type="checkbox" id="lg-toggle-marketing" class="lg-toggle-input"' + (mktActive ? ' checked' : '') + '>',
-              '<label for="lg-toggle-marketing" class="lg-toggle-label">',
+              '<input type="checkbox" id="lg-toggle-ads" class="lg-toggle-input"' + (adsActive ? ' checked' : '') + '>',
+              '<label for="lg-toggle-ads" class="lg-toggle-label">',
+                '<span class="lg-toggle-track"></span>',
+              '</label>',
+            '</div>',
+          '</div>',
+        '</div>',
+        /* Elfsight Google-Bewertungen */
+        '<div class="lg-category">',
+          '<div class="lg-category-header">',
+            '<div class="lg-category-info">',
+              '<span class="lg-category-name">Kundenbewertungen</span>',
+              '<span class="lg-category-desc">',
+                'Damit du echte Erfahrungsberichte meiner Klient:innen auf der Website sehen kannst.',
+              '</span>',
+              '<details class="lg-more">',
+                '<summary>Mehr erfahren</summary>',
+                '<p>Anbieter: Elfsight UAB, Litauen. Bindet das Bewertungs-Widget über ein CDN ein, wobei Daten unter Umständen in die USA übertragen werden.</p>',
+              '</details>',
+            '</div>',
+            '<div class="lg-toggle-wrap">',
+              '<input type="checkbox" id="lg-toggle-reviews" class="lg-toggle-input"' + (reviewsActive ? ' checked' : '') + '>',
+              '<label for="lg-toggle-reviews" class="lg-toggle-label">',
                 '<span class="lg-toggle-track"></span>',
               '</label>',
             '</div>',
@@ -197,6 +228,7 @@
         '</div>',
       '</div>',
       '<div class="lg-modal-footer">',
+        '<button id="lg-modal-necessary" class="lg-cb-btn lg-cb-btn--outline-dark" type="button">Nur Notwendige</button>',
         '<button id="lg-save-custom" class="lg-cb-btn lg-cb-btn--outline-dark" type="button">Auswahl speichern</button>',
         '<button id="lg-modal-accept-all" class="lg-cb-btn lg-cb-btn--primary" type="button">Alle akzeptieren</button>',
       '</div>'
@@ -211,6 +243,7 @@
     overlay.addEventListener('click', function () {
       modal.remove(); overlay.remove();
     });
+    document.getElementById('lg-modal-necessary').addEventListener('click', acceptNecessary);
     document.getElementById('lg-save-custom').addEventListener('click', saveCustom);
     document.getElementById('lg-modal-accept-all').addEventListener('click', acceptAll);
 
@@ -260,16 +293,15 @@
     banner.innerHTML = [
       '<div class="lg-cb-inner">',
         '<div class="lg-cb-text">',
-          '<p class="lg-cb-title">Cookies &amp; Datenschutz</p>',
+          '<p class="lg-cb-title">Deine Cookie-Einstellungen</p>',
           '<p class="lg-cb-desc">',
-            'Wir nutzen Cookies – darunter <strong>Marketing-Cookies für Google Ads</strong> und das ',
-            '<strong>Elfsight Google-Bewertungs-Widget</strong>. ',
-            'Mehr in unserer <a href="datenschutz.html" class="lg-cb-link">Datenschutzerklärung</a>.',
+            'Wir verwenden Cookies, damit diese Website gut funktioniert und du sehen kannst, was andere Klient:innen sagen. ',
+            'Du entscheidest, was du erlaubst. Mehr in unserer <a href="datenschutz.html" class="lg-cb-link">Datenschutzerklärung</a> ',
+            'oder <button id="lg-cb-settings" type="button" class="lg-cb-link lg-cb-link-btn">Einstellungen anpassen</button>.',
           '</p>',
         '</div>',
         '<div class="lg-cb-actions">',
-          '<button id="lg-cb-settings" class="lg-cb-btn lg-cb-btn--outline" type="button">Einstellungen</button>',
-          '<button id="lg-cb-necessary" class="lg-cb-btn lg-cb-btn--outline" type="button">Ablehnen</button>',
+          '<button id="lg-cb-necessary" class="lg-cb-btn lg-cb-btn--outline" type="button">Nur Notwendige</button>',
           '<button id="lg-cb-all" class="lg-cb-btn lg-cb-btn--primary" type="button">Alle akzeptieren</button>',
         '</div>',
       '</div>'
@@ -317,6 +349,7 @@
       '.lg-cb-desc{margin:0;color:#e0d5dd;font-size:0.78rem;}',
       '.lg-cb-link{color:#ffcf56;text-underline-offset:3px;}',
       '.lg-cb-link:hover{color:#ffe99a;}',
+      '.lg-cb-link-btn{background:none;border:none;padding:0;margin:0;font:inherit;cursor:pointer;text-decoration:underline;}',
       '.lg-cb-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;flex-wrap:wrap;}',
 
       /* ── Buttons ── */
@@ -372,6 +405,18 @@
       '.lg-category-name{display:block;font-weight:600;font-size:0.88rem;color:#2d1f2b;margin-bottom:4px;}',
       '.lg-category-desc{display:block;font-size:0.76rem;color:#6b5462;line-height:1.5;}',
 
+      /* ── "Mehr erfahren" Details ── */
+      '.lg-more{margin-top:6px;}',
+      '.lg-more summary{',
+        'cursor:pointer;font-size:0.72rem;color:#94778b;font-weight:500;',
+        'list-style:none;display:inline-block;',
+        'text-underline-offset:3px;text-decoration:underline;',
+      '}',
+      '.lg-more summary::-webkit-details-marker{display:none;}',
+      '.lg-more summary:hover{color:#3d2838;}',
+      '.lg-more[open] summary{color:#3d2838;margin-bottom:4px;}',
+      '.lg-more p{margin:4px 0 0;font-size:0.74rem;color:#9e8a98;line-height:1.55;}',
+
       /* ── Toggle ── */
       '.lg-toggle-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;}',
       '.lg-toggle-input{position:absolute;opacity:0;width:0;height:0;}',
@@ -389,8 +434,8 @@
       /* ── Responsive ── */
       '@media(max-width:600px){',
         '.lg-cb-inner{flex-direction:column;align-items:flex-start;gap:14px;}',
-        '.lg-cb-actions{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px;}',
-        '.lg-cb-btn--primary{grid-column:1/-1;}',
+        '.lg-cb-actions{width:100%;display:flex;flex-direction:column-reverse;gap:8px;}',
+        '.lg-cb-actions .lg-cb-btn{width:100%;text-align:center;}',
         '.lg-modal-footer{flex-direction:column-reverse;}',
         '.lg-modal-footer .lg-cb-btn{width:100%;text-align:center;}',
         /* FAB etwas nach oben, damit nicht von der Browserleiste verdeckt */
@@ -445,8 +490,8 @@
       var saved = getSaved();
       if (saved && saved.version === CONSENT_VER) {
         applyConsent(saved);
-        if (saved.marketing !== true) showElfsightPlaceholders();
-        return; // Kein Banner – Einwilligung bereits gespeichert
+        if (saved.reviews !== true) showElfsightPlaceholders();
+        return; // Kein Banner, Einwilligung bereits gespeichert
       }
 
       // Kein gespeicherter Consent → Platzhalter und Banner zeigen
