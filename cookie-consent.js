@@ -16,6 +16,22 @@
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
 
+  /*
+   * Strikte Ablehnung per Default nur für Regionen, in denen eine
+   * Einwilligungspflicht besteht (EWR + UK + Schweiz). Für alle anderen
+   * Regionen wird kein Consent-Mode-Default gesetzt, dort greift keine
+   * künstliche Blockade. Das behebt die GTM-Diagnosemeldung "Einwilligungsrate
+   * von 0% in einigen Regionen" (Messung/Personalisierung außerhalb des EWR
+   * war bislang unnötig blockiert).
+   */
+  var CONSENT_REGIONS = [
+    'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
+    'IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+    'IS','LI','NO', // EWR (EU + Island, Liechtenstein, Norwegen)
+    'GB', // Vereinigtes Königreich
+    'CH'  // Schweiz
+  ];
+
   gtag('consent', 'default', {
     'ad_storage':              'denied',
     'ad_user_data':            'denied',
@@ -24,7 +40,8 @@
     'functionality_storage':   'denied',
     'personalization_storage': 'denied',
     'security_storage':        'granted',
-    'wait_for_update':         500
+    'wait_for_update':         500,
+    'region':                  CONSENT_REGIONS
   });
   gtag('set', 'ads_data_redaction', true);
   gtag('set', 'url_passthrough', true);
@@ -438,8 +455,9 @@
         '.lg-cb-actions .lg-cb-btn{width:100%;text-align:center;}',
         '.lg-modal-footer{flex-direction:column-reverse;}',
         '.lg-modal-footer .lg-cb-btn{width:100%;text-align:center;}',
-        /* FAB etwas nach oben, damit nicht von der Browserleiste verdeckt */
-        '#lg-cookie-fab{bottom:72px;}',
+        /* FAB auf Mobile: Icon-only, rechts über WhatsApp-Button */
+        '#lg-cookie-fab{bottom:100px;left:auto;right:16px;width:44px;height:44px;border-radius:50%;padding:0;justify-content:center;}',
+        '#lg-cookie-fab span{display:none;}',
       '}',
 
       /* ── Elfsight Platzhalter ── */
