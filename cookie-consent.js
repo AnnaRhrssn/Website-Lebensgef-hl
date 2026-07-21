@@ -456,7 +456,7 @@
         '.lg-modal-footer{flex-direction:column-reverse;}',
         '.lg-modal-footer .lg-cb-btn{width:100%;text-align:center;}',
         /* FAB auf Mobile: links, etwas nach oben */
-        '#lg-cookie-fab{bottom:24px;left:16px;}',
+        '#lg-cookie-fab{bottom:24px;left:16px;right:auto;}',
       '}',
 
       /* ── Elfsight Platzhalter ── */
