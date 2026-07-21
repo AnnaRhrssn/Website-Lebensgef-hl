@@ -336,7 +336,7 @@
 
       /* ── Floating Button ── */
       '#lg-cookie-fab{',
-        'position:fixed;bottom:80px;left:16px;z-index:99990;',
+        'position:fixed;bottom:80px;left:16px;right:auto;z-index:99990;',
         'display:inline-flex;align-items:center;gap:6px;',
         'background:rgba(61,40,56,0.9);color:#fdf6fb;',
         'border:1px solid rgba(255,207,86,0.3);border-radius:20px;',
