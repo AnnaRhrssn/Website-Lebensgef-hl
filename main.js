@@ -120,11 +120,11 @@ function initHero() {
   const actions = document.querySelector('.hero-actions');
   if (!lines.length) return;
 
-  const tl = gsap.timeline({ delay: 2.0 });
-  tl.to(eyebrow, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' })
-    .to(lines, { y: '0%', duration: 1, stagger: 0.15, ease: 'power4.out' }, '-=0.4')
-    .to(sub,     { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.4')
-    .to(actions, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.4');
+  // Sofort sichtbar – kein Delay, keine Animation
+  gsap.set(eyebrow, { opacity: 1, y: 0 });
+  gsap.set(lines,   { y: '0%' });
+  gsap.set(sub,     { opacity: 1, y: 0 });
+  gsap.set(actions, { opacity: 1, y: 0 });
 }
 
 /* ── Magnetic Buttons – deactivated (buttons should not move) ── */
