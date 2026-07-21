@@ -455,9 +455,8 @@
         '.lg-cb-actions .lg-cb-btn{width:100%;text-align:center;}',
         '.lg-modal-footer{flex-direction:column-reverse;}',
         '.lg-modal-footer .lg-cb-btn{width:100%;text-align:center;}',
-        /* FAB auf Mobile: Icon-only, rechts über WhatsApp-Button */
-        '#lg-cookie-fab{bottom:100px;left:auto;right:16px;width:44px;height:44px;border-radius:50%;padding:0;justify-content:center;}',
-        '#lg-cookie-fab span{display:none;}',
+        /* FAB auf Mobile: links, etwas nach oben */
+        '#lg-cookie-fab{bottom:24px;left:16px;}',
       '}',
 
       /* ── Elfsight Platzhalter ── */

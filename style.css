@@ -1089,13 +1089,21 @@ h2.section-title em { font-style: normal; color: var(--sage); }
   background: #25D366;
   color: #fff;
   border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-  transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
 }
-.whatsapp-btn:hover {
+.whatsapp-btn.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+.whatsapp-btn.is-visible:hover {
   transform: scale(1.1);
   box-shadow: 0 8px 28px rgba(37,211,102,0.5);
 }

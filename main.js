@@ -260,6 +260,22 @@ function initAnchorScroll() {
   });
 }
 
+/* ── WhatsApp Button: erst beim Scrollen einblenden ── */
+function initWhatsAppScroll() {
+  var btn = document.querySelector('.whatsapp-btn');
+  if (!btn) return;
+  var threshold = 200;
+  function toggle() {
+    if (window.scrollY > threshold) {
+      btn.classList.add('is-visible');
+    } else {
+      btn.classList.remove('is-visible');
+    }
+  }
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+}
+
 /* ── Init ── */
 document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
@@ -275,4 +291,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initTextReveal();
   initAnchorScroll();
+  initWhatsAppScroll();
 });
