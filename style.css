@@ -1728,10 +1728,17 @@ footer {
   .page-hero-sub { font-size: 0.9rem; line-height: 1.7; }
   .hero-eyebrow { flex-wrap: wrap; }        /* Eyebrow-Text umbrechbar */
   .hero-sub { max-width: 100%; }            /* Subtitle nicht breiter als Viewport */
-  .section-label { flex-wrap: wrap; }       /* Section-Label umbrechbar */
+  .section-label { flex-wrap: wrap; font-size: 0.72rem; }  /* etwas größer auf Mobile */
   /* Genug Abstand, damit CTA-Button nicht hinter WhatsApp/Cookie-Button liegt */
   .page-hero { padding-bottom: 170px; }
   .hero-content { padding-bottom: 170px; }
+  /* Privatleistung-Hinweis auf Mobile besser lesbar */
+  .page-hero-privat,
+  .page-hero .page-hero-privat { font-size: 0.78rem; }
+  /* Formular-Inputs auf Mobile größer für bessere Bedienbarkeit */
+  .form-group input, .form-group select, .form-group textarea { font-size: 1rem; padding: 14px 16px; }
+  /* Newsletter-Checkbox Touch-Target vergrößern */
+  .newsletter-consent-check { width: 20px; height: 20px; }
 
   /* ── Alle primären CTA-Buttons auf Mobile: mittig, kein Overflow ── */
   .btn-primary {
