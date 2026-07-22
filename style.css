@@ -1711,7 +1711,12 @@ footer {
   .about-inner { grid-template-columns: 1fr; }
   .about-image { aspect-ratio: 4/3; max-height: 400px; }
   .about-image-accent { display: none; }
-  .about-stats { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .about-stats { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  /* Blog-Grid auf Mobile 1-spaltig */
+  .blog-grid, .blog-grid--3 { grid-template-columns: 1fr; }
+  /* FAQ Padding auf Mobile reduzieren */
+  .faq-question { padding: 18px 20px; }
+  .faq-answer { padding: 0 20px 20px; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; gap: 32px; }
   .content-two-col { grid-template-columns: 1fr; }
@@ -1768,6 +1773,11 @@ footer {
   .about-stat { display: flex; align-items: baseline; gap: 12px; }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .process-grid { grid-template-columns: 1fr; }
+  /* FAQ noch kompakter auf sehr kleinen Screens */
+  .faq-question { padding: 16px; font-size: 0.95rem; }
+  .faq-answer { padding: 0 16px 18px; }
+  /* forwho-boxes auf kleinen Screens einzel-spaltig */
+  .forwho-grid { grid-template-columns: 1fr !important; }
 }
 
 /* ── Subpage Content Layout ── */
