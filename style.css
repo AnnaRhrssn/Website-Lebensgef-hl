@@ -522,6 +522,7 @@ section { position: relative; }
   font-weight: 500;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -534,6 +535,7 @@ h2.section-title {
   color: var(--deep);
   line-height: 1.1;
   letter-spacing: -0.01em;
+  text-align: left;
 }
 h2.section-title em { font-style: normal; color: var(--sage); }
 .section-sub {
@@ -542,6 +544,7 @@ h2.section-title em { font-style: normal; color: var(--sage); }
   line-height: 1.8;
   max-width: 560px;
   margin-top: 20px;
+  text-align: left;
 }
 
 /* reveal animations */
@@ -1115,9 +1118,8 @@ h2.section-title em { font-style: normal; color: var(--sage); }
 
 /* ── Testimonials ── */
 #testimonials { background: var(--cream); }
-.testimonials-header { text-align: center; max-width: 600px; margin: 0 auto 64px; }
-.testimonials-header .section-label { justify-content: center; }
-.testimonials-header .section-label::before { display: none; }
+.testimonials-header { text-align: left; margin-bottom: 64px; }
+.testimonials-header .section-label { justify-content: flex-start; }
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1711,7 +1713,7 @@ footer {
   .about-inner { grid-template-columns: 1fr; }
   .about-image { aspect-ratio: 4/3; max-height: 400px; }
   .about-image-accent { display: none; }
-  .about-stats { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .about-stats { grid-template-columns: 1fr; gap: 12px; }
   /* Blog-Grid auf Mobile 1-spaltig */
   .blog-grid, .blog-grid--3 { grid-template-columns: 1fr; }
   /* FAQ Padding auf Mobile reduzieren */
@@ -1852,7 +1854,7 @@ footer {
   margin-bottom: 16px;
 }
 .process-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 8px;
 }
 .process-header h2 {
@@ -1933,7 +1935,7 @@ footer {
 
 /* ── FAQ Section ── */
 .faq-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 56px;
 }
 .faq-list {

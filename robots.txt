@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Danke-Seiten nicht crawlen
+Disallow: /danke.html
+Disallow: /danke-kontakt.html
+Disallow: /danke-newsletter.html
+Disallow: /danke-newsletter-bestaetigung.html
+Disallow: /danke-termin.html
+
+Sitemap: https://lebens-gefuehl.com/sitemap.xml
