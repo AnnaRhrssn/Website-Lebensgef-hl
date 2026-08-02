@@ -1735,7 +1735,14 @@ footer {
   .page-hero-sub { font-size: 0.9rem; line-height: 1.7; }
   .hero-eyebrow { flex-wrap: wrap; }        /* Eyebrow-Text umbrechbar */
   .hero-sub { max-width: 100%; }            /* Subtitle nicht breiter als Viewport */
-  .section-label { flex-wrap: wrap; font-size: 0.72rem; }  /* etwas größer auf Mobile */
+  .section-label {
+    flex-wrap: wrap;
+    font-size: 0.72rem;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    align-self: flex-start;
+    width: 100%;
+  }
   /* Genug Abstand, damit CTA-Button nicht hinter WhatsApp/Cookie-Button liegt */
   .page-hero { padding-bottom: 170px; }
   .hero-content { padding-bottom: 170px; }
