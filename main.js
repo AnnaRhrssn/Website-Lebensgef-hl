@@ -9,12 +9,20 @@ function initPreloader() {
   const logo      = document.querySelector('.preloader-logo');
   if (!preloader) return;
 
-  gsap.to(logo, { opacity: 1, y: 0, duration: 0.6, delay: 0.1, ease: 'power2.out' });
+  gsap.to(logo, { opacity: 1, y: 0, duration: 0.5, delay: 0.1, ease: 'power2.out' });
 
-  window.addEventListener('load', () => {
-    gsap.timeline({ delay: 0.3 })
-      .to(preloader, { opacity: 0, duration: 0.4, ease: 'power2.inOut', onComplete() { preloader.remove(); } });
-  });
+  /* Preloader spätestens nach 1,2 s verstecken – unabhängig vom load-Event.
+   * Hintergrund: load wartet auf CDN-Skripte (GSAP, Lenis) – das kann auf
+   * langsamen Mobilverbindungen 4–5 s dauern und blockiert damit das LCP-Bild. */
+  let _preloaderDone = false;
+  function hidePreloader() {
+    if (_preloaderDone) return;
+    _preloaderDone = true;
+    gsap.to(preloader, { opacity: 0, duration: 0.4, ease: 'power2.inOut',
+      onComplete() { preloader.remove(); } });
+  }
+  setTimeout(hidePreloader, 1200);
+  window.addEventListener('load', () => setTimeout(hidePreloader, 200));
 }
 
 /* ── Lenis Smooth Scroll ── */
