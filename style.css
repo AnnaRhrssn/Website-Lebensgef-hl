@@ -52,8 +52,8 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em { font-style: normal; }
   justify-content: center;
   flex-direction: column;
   gap: 24px;
-  /* CSS-Animation: verschwindet nach 1,2s unabhängig vom JS-Thread */
-  animation: preloader-hide 0.4s ease 1.2s forwards;
+  /* CSS-Animation: verschwindet nach 0,5s unabhängig vom JS-Thread */
+  animation: preloader-hide 0.4s ease 0.5s forwards;
 }
 .preloader-logo {
   font-family: 'Cormorant Garamond', serif;
