@@ -4,6 +4,10 @@
  *
  * GTM wird via Standard-Snippet im <head> jeder Seite geladen (GTM-M94NZDKB).
  * Consent Mode v2: alle Tags blockiert bis Marketing-Einwilligung.
+ *
+ * HINWEIS: Die Consent-Mode-v2-Defaults (gtag consent default) stehen als
+ * winziges Inline-Script direkt im <head> VOR GTM – diese Datei wird mit
+ * defer geladen und blockiert damit nicht mehr den Hauptthread (INP-Fix).
  */
 
 (function () {
@@ -12,39 +16,8 @@
   var STORAGE_KEY = 'lg_cookie_consent';
   var CONSENT_VER = '3';
 
-  /* ─── dataLayer & Consent Mode v2 Defaults ─── */
-  window.dataLayer = window.dataLayer || [];
+  /* gtag ist global via Inline-Script im <head> definiert */
   function gtag() { window.dataLayer.push(arguments); }
-
-  /*
-   * Strikte Ablehnung per Default nur für Regionen, in denen eine
-   * Einwilligungspflicht besteht (EWR + UK + Schweiz). Für alle anderen
-   * Regionen wird kein Consent-Mode-Default gesetzt, dort greift keine
-   * künstliche Blockade. Das behebt die GTM-Diagnosemeldung "Einwilligungsrate
-   * von 0% in einigen Regionen" (Messung/Personalisierung außerhalb des EWR
-   * war bislang unnötig blockiert).
-   */
-  var CONSENT_REGIONS = [
-    'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
-    'IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
-    'IS','LI','NO', // EWR (EU + Island, Liechtenstein, Norwegen)
-    'GB', // Vereinigtes Königreich
-    'CH'  // Schweiz
-  ];
-
-  gtag('consent', 'default', {
-    'ad_storage':              'denied',
-    'ad_user_data':            'denied',
-    'ad_personalization':      'denied',
-    'analytics_storage':       'denied',
-    'functionality_storage':   'denied',
-    'personalization_storage': 'denied',
-    'security_storage':        'granted',
-    'wait_for_update':         500,
-    'region':                  CONSENT_REGIONS
-  });
-  gtag('set', 'ads_data_redaction', true);
-  gtag('set', 'url_passthrough', true);
 
   /* ─── Einwilligung lesen / schreiben ─── */
   function getSaved() {
