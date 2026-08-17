@@ -4,24 +4,10 @@
    ============================================= */
 
 /* ── Preloader ── */
-function initPreloader() {
-  const preloader = document.getElementById('preloader');
-  const logo      = document.querySelector('.preloader-logo');
-  if (!preloader) return;
-
-  gsap.to(logo, { opacity: 1, y: 0, duration: 0.5, delay: 0.1, ease: 'power2.out' });
-
-  /* Preloader mit GSAP verstecken – falls das Inline-Fallback-Script noch
-   * nicht gefeuert hat. Der _done-Flag verhindert doppelte Ausführung. */
-  function hidePreloader() {
-    if (preloader._done) return;
-    preloader._done = true;
-    if (window._preloaderFallbackTimer) clearTimeout(window._preloaderFallbackTimer);
-    gsap.to(preloader, { opacity: 0, duration: 0.4, ease: 'power2.inOut',
-      onComplete() { preloader.remove(); } });
-  }
-  window.addEventListener('load', () => setTimeout(hidePreloader, 200));
-}
+/* CSS-Animation (animation: preloader-hide 0.4s ease 1.2s forwards) versteckt
+ * den Preloader unabhängig vom JS-Thread. DOM-Entfernung via Inline-Script
+ * in index.html nach 1,8s. GSAP ist hier nicht mehr nötig. */
+function initPreloader() {}
 
 /* ── Lenis Smooth Scroll ── */
 function initLenis() {

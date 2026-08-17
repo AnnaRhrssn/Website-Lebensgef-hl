@@ -52,6 +52,8 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em { font-style: normal; }
   justify-content: center;
   flex-direction: column;
   gap: 24px;
+  /* CSS-Animation: verschwindet nach 1,2s unabhängig vom JS-Thread */
+  animation: preloader-hide 0.4s ease 1.2s forwards;
 }
 .preloader-logo {
   font-family: 'Cormorant Garamond', serif;
@@ -59,7 +61,6 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em { font-style: normal; }
   font-weight: 300;
   color: var(--deep);
   letter-spacing: 0.12em;
-  opacity: 0;
 }
 .preloader-bar {
   width: 120px; height: 1px;
@@ -79,6 +80,9 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em { font-style: normal; }
 }
 @keyframes preload-line {
   to { left: 0; }
+}
+@keyframes preloader-hide {
+  to { opacity: 0; pointer-events: none; visibility: hidden; }
 }
 #preloader-curtain-top,
 #preloader-curtain-bottom {

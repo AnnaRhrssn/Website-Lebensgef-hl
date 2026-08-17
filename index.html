@@ -166,16 +166,12 @@
      Dieses Inline-Script läuft sofort wenn der Browser diese Zeile empfängt
      (noch während des HTML-Streamings), nicht erst nach DOMContentLoaded. -->
 <script>
-(function(){
-  var t=setTimeout(function(){
-    var p=document.getElementById('preloader');
-    if(!p||p._done)return;
-    p._done=true;
-    p.style.cssText+='opacity:0;transition:opacity 0.35s ease;pointer-events:none';
-    setTimeout(function(){if(p&&p.parentNode)p.parentNode.removeChild(p);},380);
-  },1400);
-  window._preloaderFallbackTimer=t;
-})();
+/* Preloader-DOM-Cleanup: CSS-Animation versteckt ihn bei 1,2–1,6s;
+   dieses Script entfernt ihn danach aus dem DOM (kein opacity-Eingriff). */
+setTimeout(function(){
+  var p=document.getElementById('preloader');
+  if(p&&p.parentNode)p.parentNode.removeChild(p);
+},1800);
 </script>
 
 <!-- Navigation -->
