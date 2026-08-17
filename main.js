@@ -9,11 +9,11 @@ function initPreloader() {
   const logo      = document.querySelector('.preloader-logo');
   if (!preloader) return;
 
-  gsap.to(logo, { opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: 'power2.out' });
+  gsap.to(logo, { opacity: 1, y: 0, duration: 0.6, delay: 0.1, ease: 'power2.out' });
 
   window.addEventListener('load', () => {
-    gsap.timeline({ delay: 1.6 })
-      .to(preloader, { opacity: 0, duration: 0.6, ease: 'power2.inOut', onComplete() { preloader.remove(); } });
+    gsap.timeline({ delay: 0.3 })
+      .to(preloader, { opacity: 0, duration: 0.4, ease: 'power2.inOut', onComplete() { preloader.remove(); } });
   });
 }
 
