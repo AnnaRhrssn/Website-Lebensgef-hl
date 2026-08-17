@@ -1,23 +1,8 @@
 /* =============================================
    LEBENSGEFÜHL – main.js
-   GSAP + ScrollTrigger + Lenis + Particles
+   GSAP + ScrollTrigger + Particles
+   (Lenis entfernt – CSS scroll-behavior: smooth reicht)
    ============================================= */
-
-/* ── Preloader ── */
-/* CSS-Animation (animation: preloader-hide 0.4s ease 1.2s forwards) versteckt
- * den Preloader unabhängig vom JS-Thread. DOM-Entfernung via Inline-Script
- * in index.html nach 1,8s. GSAP ist hier nicht mehr nötig. */
-function initPreloader() {}
-
-/* ── Lenis Smooth Scroll ── */
-function initLenis() {
-  if (typeof Lenis === 'undefined') return;
-  const lenis = new Lenis({ lerp: 0.08, smoothWheel: true, syncTouch: false });
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(time => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(0);
-  window.lenis = lenis;
-}
 
 /* ── Hero Particle Canvas ── */
 function initParticles() {
@@ -90,13 +75,11 @@ function initNav() {
   if (burger && menu) {
     const openMenu = () => {
       menu.classList.add('open');
-      document.body.style.overflow = 'hidden'; // Body-Scroll sperren
-      if (window.lenis) window.lenis.stop();    // Lenis pausieren → Menü scrollt frei
+      document.body.style.overflow = 'hidden';
     };
     const closeMenu = () => {
       menu.classList.remove('open');
-      document.body.style.overflow = '';        // Body-Scroll freigeben
-      if (window.lenis) window.lenis.start();   // Lenis wieder aktivieren
+      document.body.style.overflow = '';
     };
     burger.addEventListener('click', () => menu.classList.contains('open') ? closeMenu() : openMenu());
     close && close.addEventListener('click', closeMenu);
@@ -104,29 +87,11 @@ function initNav() {
   }
 }
 
-/* ── Hero Animation ── */
-function initHero() {
-  const lines   = document.querySelectorAll('.hero-line-inner');
-  const eyebrow = document.querySelector('.hero-eyebrow');
-  const sub     = document.querySelector('.hero-sub');
-  const actions = document.querySelector('.hero-actions');
-  if (!lines.length) return;
-
-  // Sofort sichtbar – kein Delay, keine Animation
-  gsap.set(eyebrow, { opacity: 1, y: 0 });
-  gsap.set(lines,   { y: '0%' });
-  gsap.set(sub,     { opacity: 1, y: 0 });
-  gsap.set(actions, { opacity: 1, y: 0 });
-}
-
-/* ── Magnetic Buttons – deactivated (buttons should not move) ── */
-function initMagnetic() {
-  // Intentionally empty – CTAs use CSS-only hover (background color change)
-}
+/* ── Magnetic Buttons – deactivated ── */
+function initMagnetic() {}
 
 /* ── Scroll Reveal ── */
 function initScrollReveal() {
-  // Generic reveals
   gsap.utils.toArray('.reveal-up').forEach(el => {
     gsap.to(el, {
       opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
@@ -152,7 +117,6 @@ function initScrollReveal() {
     });
   });
 
-  // Staggered card reveals
   gsap.utils.toArray('.angebote-grid').forEach(grid => {
     gsap.from(grid.querySelectorAll('.angebot-card'), {
       opacity: 0, y: 50, duration: 0.8, stagger: 0.12, ease: 'power3.out',
@@ -167,7 +131,6 @@ function initScrollReveal() {
     });
   });
 
-  // Process steps
   gsap.utils.toArray('.process-grid').forEach(grid => {
     gsap.from(grid.querySelectorAll('.process-step'), {
       opacity: 0, y: 30, duration: 0.7, stagger: 0.1, ease: 'power2.out',
@@ -187,8 +150,6 @@ function initParallax() {
     });
   });
 
-  // Hero parallax – element starts 120px above the section (see CSS top: -120px)
-  // animate y from 0 to +120px so it drifts down as user scrolls (parallax effect)
   const heroBg = document.querySelector('.hero-bg-image');
   if (heroBg) {
     gsap.fromTo(heroBg,
@@ -224,7 +185,7 @@ function initCounters() {
   });
 }
 
-/* ── Split Text (manual line split for section titles) ── */
+/* ── Split Text ── */
 function initTextReveal() {
   document.querySelectorAll('.split-reveal').forEach(el => {
     const html = el.innerHTML;
@@ -236,18 +197,15 @@ function initTextReveal() {
   });
 }
 
-/* ── Smooth Anchor Scroll ── */
+/* ── Smooth Anchor Scroll (CSS scroll-behavior, kein Lenis nötig) ── */
 function initAnchorScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      if (window.lenis) {
-        window.lenis.scrollTo(target, { offset: -80, duration: 1.4 });
-      } else {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      const top = target.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
     });
   });
 }
@@ -268,20 +226,27 @@ function initWhatsAppScroll() {
   toggle();
 }
 
-/* ── Init ── */
+/* ── Init ──
+ * Kritisch (Nav): sofort → damit Hero-Bild gemalt werden kann.
+ * Alles andere: erst nach zwei Animation-Frames, damit der Browser
+ * den LCP-Kandidaten malen kann, BEVOR GSAP den Main-Thread belegt.
+ */
 document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  initPreloader();
-  initLenis();
-  initParticles();
+  // Sofort: nur Navigation (kein Layout-Thrashing)
   initNav();
-  initHero();
-  initMagnetic();
-  initScrollReveal();
-  initParallax();
-  initCounters();
-  initTextReveal();
   initAnchorScroll();
   initWhatsAppScroll();
+
+  // Nach zwei rAF-Frames: Browser hat LCP gemalt, jetzt schwere Inits
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      initScrollReveal();
+      initParallax();
+      initCounters();
+      initTextReveal();
+      initParticles();
+    });
+  });
 });
