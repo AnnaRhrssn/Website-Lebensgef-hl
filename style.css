@@ -102,59 +102,7 @@ ul { list-style: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 h1 em, h2 em, h3 em, h4 em, h5 em, h6 em { font-style: normal; }
 
-/* ── Preloader ── */
-#preloader {
-  position: fixed;
-  inset: 0;
-  background: var(--warm-white);
-  z-index: 9990;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 24px;
-  /* CSS-Animation: verschwindet nach 0,5s unabhängig vom JS-Thread */
-  animation: preloader-hide 0.4s ease 0.5s forwards;
-}
-.preloader-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 300;
-  color: var(--deep);
-  letter-spacing: 0.12em;
-}
-.preloader-bar {
-  width: 120px; height: 1px;
-  background: var(--border);
-  position: relative;
-  overflow: hidden;
-}
-.preloader-bar::after {
-  content: '';
-  position: absolute;
-  left: -100%;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--gold);
-  animation: preload-line 1.0s var(--ease-out) forwards;
-}
-@keyframes preload-line {
-  to { left: 0; }
-}
-@keyframes preloader-hide {
-  to { opacity: 0; pointer-events: none; visibility: hidden; }
-}
-#preloader-curtain-top,
-#preloader-curtain-bottom {
-  position: fixed;
-  left: 0; right: 0;
-  height: 50%;
-  background: var(--warm-white);
-  z-index: 9989;
-}
-#preloader-curtain-top { top: 0; }
-#preloader-curtain-bottom { bottom: 0; }
+/* Preloader entfernt – blockierte LCP auf Mobilgeräten */
 
 /* ── Navigation ── */
 #nav {
@@ -190,8 +138,7 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em { font-style: normal; }
   transition: color 0.4s;
 }
 #nav.scrolled .nav-logo-text,
-#nav.nav-on-light .nav-logo-text,
-body:has(#preloader) .nav-logo-text {
+#nav.nav-on-light .nav-logo-text {
   color: var(--deep);
 }
 .nav-links {
@@ -220,8 +167,7 @@ body:has(#preloader) .nav-logo-text {
 .nav-links a:hover::after { width: 100%; }
 .nav-links a:hover { color: var(--warm-white); }
 #nav.scrolled .nav-links a,
-#nav.nav-on-light .nav-links a,
-body:has(#preloader) .nav-links a { color: var(--text-mid); }
+#nav.nav-on-light .nav-links a { color: var(--text-mid); }
 #nav.scrolled .nav-links a:hover,
 #nav.nav-on-light .nav-links a:hover { color: var(--text); }
 .nav-cta {
@@ -268,8 +214,7 @@ body:has(#preloader) .nav-links a { color: var(--text-mid); }
 .nav-dropdown-toggle:hover,
 .nav-dropdown:hover .nav-dropdown-toggle { color: var(--warm-white); }
 #nav.scrolled .nav-dropdown-toggle,
-#nav.nav-on-light .nav-dropdown-toggle,
-body:has(#preloader) .nav-dropdown-toggle { color: var(--text-mid); }
+#nav.nav-on-light .nav-dropdown-toggle { color: var(--text-mid); }
 #nav.scrolled .nav-dropdown-toggle:hover,
 #nav.nav-on-light .nav-dropdown-toggle:hover { color: var(--text); }
 .nav-dropdown-toggle svg { transition: transform 0.25s var(--ease-out); flex-shrink: 0; }
@@ -316,8 +261,7 @@ body:has(#preloader) .nav-dropdown-toggle { color: var(--text-mid); }
 .nav-burger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
 .nav-burger span { display: block; width: 24px; height: 1.5px; background: var(--warm-white); transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s; }
 #nav.scrolled .nav-burger span,
-#nav.nav-on-light .nav-burger span,
-body:has(#preloader) .nav-burger span { background: var(--text); }
+#nav.nav-on-light .nav-burger span { background: var(--text); }
 
 /* Burger → X wenn Menü offen */
 .mobile-menu.open ~ #nav .nav-burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
