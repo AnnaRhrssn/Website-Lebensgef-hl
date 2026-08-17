@@ -11,17 +11,15 @@ function initPreloader() {
 
   gsap.to(logo, { opacity: 1, y: 0, duration: 0.5, delay: 0.1, ease: 'power2.out' });
 
-  /* Preloader spätestens nach 1,2 s verstecken – unabhängig vom load-Event.
-   * Hintergrund: load wartet auf CDN-Skripte (GSAP, Lenis) – das kann auf
-   * langsamen Mobilverbindungen 4–5 s dauern und blockiert damit das LCP-Bild. */
-  let _preloaderDone = false;
+  /* Preloader mit GSAP verstecken – falls das Inline-Fallback-Script noch
+   * nicht gefeuert hat. Der _done-Flag verhindert doppelte Ausführung. */
   function hidePreloader() {
-    if (_preloaderDone) return;
-    _preloaderDone = true;
+    if (preloader._done) return;
+    preloader._done = true;
+    if (window._preloaderFallbackTimer) clearTimeout(window._preloaderFallbackTimer);
     gsap.to(preloader, { opacity: 0, duration: 0.4, ease: 'power2.inOut',
       onComplete() { preloader.remove(); } });
   }
-  setTimeout(hidePreloader, 1200);
   window.addEventListener('load', () => setTimeout(hidePreloader, 200));
 }
 
