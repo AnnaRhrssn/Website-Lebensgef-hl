@@ -562,10 +562,8 @@ h2.section-title em { font-style: normal; color: var(--sage); }
   background: var(--cream);
 }
 .problem-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(48px, 6vw, 100px);
-  align-items: center;
+  display: block;
+  max-width: 780px;
 }
 .problem-text {}
 .problem-list {
