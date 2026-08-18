@@ -563,13 +563,14 @@ h2.section-title em { font-style: normal; color: var(--sage); }
 }
 .problem-inner {
   display: block;
-  max-width: 780px;
 }
-.problem-text {}
+.problem-text {
+  max-width: 680px;
+  margin-bottom: 2.5rem;
+}
 .problem-list {
-  margin-top: 36px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 .problem-item {
@@ -1708,9 +1709,7 @@ footer {
   .nav-links { display: none; }
   .nav-burger { display: flex; }
   .hero-content { padding: calc(var(--nav-h) + 32px) 24px 48px; }
-  .problem-inner { grid-template-columns: 1fr; }
-  .problem-image { aspect-ratio: 4/3; max-height: 400px; }
-  .problem-image-badge { left: 16px; bottom: 16px; }
+  .problem-list { grid-template-columns: 1fr; }
   .angebote-grid { grid-template-columns: 1fr; }
   .about-inner { grid-template-columns: 1fr; }
   .about-image { aspect-ratio: 4/3; max-height: 400px; }
