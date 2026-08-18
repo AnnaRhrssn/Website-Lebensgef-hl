@@ -890,6 +890,11 @@ h2.section-title em { font-style: normal; color: var(--sage); }
   .trust-reviews-grid { grid-template-columns: 1fr !important; }
   .trust-about-inner { grid-template-columns: 1fr; }
   .trust-about-image { aspect-ratio: 4/3; }
+  .trust-about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
 }
 
 
